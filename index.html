@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Mechanical Engineering Portfolio</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e67e22;
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 6rem 2rem 4rem 2rem;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: #bdc3c7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .project-card {
+                grid-template-columns: 45% 55%;
+            }
+        }
+
+        .project-image {
+            background-color: #eaeaea;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .specs-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        .specs-list strong {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            align-self: flex-start;
+        }
+
+        .btn:hover {
+            background-color: var(--dark);
+        }
+
+        footer {
+            background-color: var(--light);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #e1e8ed;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>Your Name</h1>
+            <p>Mechanical Design & Aerospace Systems Engineer</p>
+            <div class="tag-container">
+                <span class="tag">SolidWorks & Fusion360</span>
+                <span class="tag">FEA Stress Analysis</span>
+                <span class="tag">GD&T</span>
+                <span class="tag">Rapid Prototyping</span>
+                <span class="tag">MATLAB</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title">Featured Engineering Projects</h2>
+        
+        <div class="project-grid">
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/project1.jpg" alt="Aerodynamic Wing Assembly View">
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-meta">Aerodynamics & Structural Design</div>
+                        <h3 class="project-title">Fixed-Wing Unmanned Aerial Vehicle (UAV)</h3>
+                        <p class="project-description">
+                            Designed and optimized a lightweight composite wing structure to resolve low-speed flight stall issues. Performed computational aerodynamic analysis to optimize lift-to-drag ratios while ensuring structural integrity under maximum aerodynamic loading.
+                        </p>
+                        <ul class="specs-list">
+                            <li><strong>Analysis:</strong> Ansys Fluent (CFD), SolidWorks Simulation (FEA)</li>
+                            <li><strong>Manufacturing:</strong> Carbon fiber layup, 3D-printed internal ribs</li>
+                            <li><strong>Metrics:</strong> Achieved a 15% reduction in wing loading and 1.8x factor of safety</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">View Technical Report</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/project2.jpg" alt="Robotic Arm Assembly">
+                </div>
+                <div class="project-info">
+                    <div>
+                        <div class="project-meta">Robotics & Mechatronics</div>
+                        <h3 class="project-title">3-Axis Kinematic Robotic Arm</h3>
+                        <p class="project-description">
+                            Developed an automated robotic arm designed for high-repeatability sorting tasks. Calculated forward/inverse kinematics, managed motor torque profiles, and implemented custom gear reduction configurations to maximize payload capacity.
+                        </p>
+                        <ul class="specs-list">
+                            <li><strong>Actuators:</strong> NEMA 17 Stepper Motors, Custom Planetary Gearboxes</li>
+                            <li><strong>Tolerancing:</strong> Applied strict ISO GD&T standards for CNC milled aluminum joints</li>
+                            <li><strong>Control:</strong> Arduino / C++ integration with hardware limit switches</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn">View Technical Report</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Your Name. Built with HTML & CSS on GitHub Pages.</p>
+        <div style="margin-top: 1rem;">
+            <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a> | 
+            <a href="mailto:your.email@example.com">Email Resume</a>
+        </div>
+    </footer>
+
+</body>
+</html>
