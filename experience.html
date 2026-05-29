@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aryan Husain — Experience</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <style>
+
+    .exp-page {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem 6rem;
+    }
+
+    /* ── EXPERIENCE CARDS ── */
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .exp-card {
+      background: var(--panel);
+      border: 1px solid var(--edge);
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      align-items: stretch;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.25s, box-shadow 0.3s;
+      cursor: default;
+      position: relative;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s;
+    }
+
+    .exp-card:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+      box-shadow: -4px 0 0 0 var(--accent), 0 4px 24px rgba(76,175,125,0.08);
+    }
+    .exp-card:hover::before { transform: scaleY(1); }
+
+    /* Logo panel */
+    .exp-logo-panel {
+      background: var(--surface);
+      border-right: 1px solid var(--edge);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 1.75rem 1rem;
+      transition: background 0.3s;
+    }
+    .exp-card:hover .exp-logo-panel { background: #1a2535; }
+
+    .exp-logo-img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border: 1px solid var(--wire);
+      background: var(--panel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+    .exp-logo-img svg { width: 30px; height: 30px; }
+
+    .exp-logo-abbr {
+      font-family: var(--mono);
+      font-size: 8px;
+      color: var(--dim);
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* Content panel */
+    .exp-content {
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .exp-type {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .exp-role {
+      font-family: var(--cond);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--bright);
+      line-height: 1.2;
+    }
+
+    .exp-org {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      color: var(--dim);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-desc {
+      font-size: 0.875rem;
+      color: var(--dim);
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 640px;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 0.75rem;
+    }
+
+    /* ── TEAMS SECTION ── */
+    .teams-header { margin-top: 4rem; margin-bottom: 1.5rem; }
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .team-card {
+      background: var(--panel);
+      border: 1px solid var(--edge);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(76,175,125,0.08) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .team-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .team-card:hover::after { opacity: 1; }
+
+    .team-logo-wrap {
+      width: 70px;
+      height: 70px;
+      border: 1px solid var(--wire);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      transition: border-color 0.25s;
+    }
+    .team-card:hover .team-logo-wrap { border-color: var(--accent); }
+    .team-logo-wrap svg { width: 32px; height: 32px; }
+
+    .team-name {
+      font-family: var(--cond);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--bright);
+      position: relative;
+      z-index: 1;
+    }
+    .team-role {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      position: relative;
+      z-index: 1;
+    }
+    .team-desc {
+      font-size: 0.8rem;
+      color: var(--dim);
+      line-height: 1.6;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PLACEHOLDER NOTE ── */
+    .placeholder-note {
+      background: rgba(76,175,125,0.05);
+      border: 1px dashed rgba(76,175,125,0.25);
+      padding: 1rem 1.5rem;
+      margin-top: 2.5rem;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+    }
+    .placeholder-note strong { color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .exp-card { grid-template-columns: 1fr; }
+      .exp-logo-panel { flex-direction: row; border-right: none; border-bottom: 1px solid var(--edge); padding: 1rem 1.5rem; justify-content: flex-start; }
+      .exp-page { padding: 3rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">AH<span>_</span>MENG</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="experience.html" class="active">Experience</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+<div class="exp-page">
+
+  <div class="section-eyebrow fade-up">Work &amp; Involvement</div>
+  <h1 class="section-title fade-up fade-up-d1">Experience</h1>
+
+  <!-- ── COMPANIES / WORK ── -->
+  <div class="exp-grid">
+
+    <!-- Card 1 — placeholder for real company -->
+    <div class="exp-card fade-up fade-up-d1">
+      <div class="exp-logo-panel">
+        <div class="exp-logo-img">
+          <!-- Replace with <img src="assets/company-logo.png" alt="Company"> -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="1.25"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="exp-logo-abbr">COMPANY<br/>LOGO</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-type">Work Experience</div>
+        <div class="exp-role">Add Your Role Here</div>
+        <div class="exp-org">Company / Organisation Name</div>
+        <div class="exp-period">Month Year – Month Year · Location</div>
+        <p class="exp-desc">Describe what you did in this role — key responsibilities, tools used, and any outcomes or achievements. Add as much detail as you like here.</p>
+        <div class="exp-tags">
+          <span class="chip">Skill / Tool</span>
+          <span class="chip">Skill / Tool</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 — placeholder -->
+    <div class="exp-card fade-up fade-up-d2">
+      <div class="exp-logo-panel">
+        <div class="exp-logo-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="1.25"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="exp-logo-abbr">COMPANY<br/>LOGO</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-type">Work Experience</div>
+        <div class="exp-role">Add Your Role Here</div>
+        <div class="exp-org">Company / Organisation Name</div>
+        <div class="exp-period">Month Year – Month Year · Location</div>
+        <p class="exp-desc">Describe what you did in this role — key responsibilities, tools used, and any outcomes or achievements.</p>
+        <div class="exp-tags">
+          <span class="chip">Skill / Tool</span>
+          <span class="chip">Skill / Tool</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── TEAMS & CLUBS ── -->
+  <div class="teams-header">
+    <div class="section-eyebrow">Student Teams &amp; Clubs</div>
+    <h2 class="section-title" style="margin-bottom:0;">Teams</h2>
+  </div>
+
+  <div class="teams-grid">
+
+    <div class="team-card fade-up fade-up-d1">
+      <div class="team-logo-wrap">
+        <!-- Replace with team logo img -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="1.25"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="team-name">Team Name Here</div>
+      <div class="team-role">Your Role</div>
+      <p class="team-desc">Brief description of the team, what it does, and your involvement. Replace with real details.</p>
+    </div>
+
+    <div class="team-card fade-up fade-up-d2">
+      <div class="team-logo-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#d4a647" stroke-width="1.25"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div class="team-name">Team Name Here</div>
+      <div class="team-role">Your Role</div>
+      <p class="team-desc">Brief description of the team and your involvement. Replace with real details.</p>
+    </div>
+
+    <div class="team-card fade-up fade-up-d3">
+      <div class="team-logo-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="1.25"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="team-name">Team Name Here</div>
+      <div class="team-role">Your Role</div>
+      <p class="team-desc">Brief description of the team and your involvement. Replace with real details.</p>
+    </div>
+
+  </div>
+
+  <div class="placeholder-note">
+    <strong>How to customise:</strong> Replace each card's logo SVG with <code>&lt;img src="assets/logo-name.png"&gt;</code>, update role titles, organisation names, dates, and descriptions with your real experience. Add or remove cards as needed.
+  </div>
+
+</div><!-- /exp-page -->
+
+<footer>
+  <p>© 2025 Aryan Husain</p>
+  <p><a href="contact.html">arysain05@gmail.com</a></p>
+</footer>
+</div>
+</body>
+</html>
