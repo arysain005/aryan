@@ -1,266 +1,163 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aryan Husain — Projects</title>
   <link rel="stylesheet" href="assets/style.css"/>
   <style>
-  .proj-page {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 4.5rem 2rem 6rem;
-  }
+  .proj-page { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem 6rem; }
 
   .proj-hint {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.07em;
-    margin-bottom: 2.5rem;
-    display: flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--dim); letter-spacing: 0.1em;
+    margin-bottom: 2.5rem; display: flex; align-items: center; gap: 8px;
   }
-  .proj-hint::before {
-    content: '↓';
-    font-size: 12px;
-    color: var(--primary);
-  }
+  .proj-hint::before { content: '↓'; color: var(--primary); font-size: 12px; }
 
   /* ── PROJECT LIST ── */
-  .proj-list { display: flex; flex-direction: column; gap: 10px; }
+  .proj-list { display: flex; flex-direction: column; gap: 2px; }
 
   .proj-item {
+    border: 1px solid var(--edge);
     background: var(--panel);
-    border: 1.5px solid var(--border);
-    border-radius: 14px;
+    transition: border-color 0.2s;
     overflow: hidden;
-    transition: border-color 0.25s, box-shadow 0.25s;
   }
-  .proj-item.open {
-    border-color: var(--primary);
-    box-shadow: 0 4px 28px var(--shadow), 0 0 0 1px rgba(30,214,52,0.1);
-  }
+  .proj-item.open { border-color: var(--primary); }
 
   /* Summary row */
   .proj-summary {
     display: grid;
-    grid-template-columns: 52px 1fr auto;
+    grid-template-columns: 48px 1fr auto;
     align-items: center;
-    gap: 1.25rem;
-    padding: 1.4rem 1.75rem;
-    cursor: pointer;
-    user-select: none;
+    gap: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    cursor: pointer; user-select: none;
     transition: background 0.2s;
-    border-radius: 13px 13px 0 0;
   }
-  .proj-summary:hover { background: var(--secondary); }
+  .proj-summary:hover { background: var(--surface); }
   .proj-item.open .proj-summary {
     background: var(--secondary);
-    border-radius: 13px 13px 0 0;
-    border-bottom: 1.5px solid rgba(30,214,52,0.15);
+    border-bottom: 1px solid var(--edge);
   }
 
   .proj-num {
-    font-family: var(--mono);
-    font-size: 11px; font-weight: 500;
-    color: var(--primary);
-    background: rgba(30,214,52,0.1);
-    border-radius: 6px;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--wire); letter-spacing: 0.1em;
   }
 
   .proj-summary-body { min-width: 0; }
-
-  .proj-category {
-    font-family: var(--mono); font-size: 9px;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 4px; font-weight: 500;
-  }
-
-  .proj-title {
-    font-size: 1.05rem; font-weight: 600;
-    color: var(--text); line-height: 1.25; margin-bottom: 8px;
-  }
-
+  .proj-category { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+  .proj-title { font-family: var(--cond); font-size: 1.2rem; font-weight: 600; color: var(--bright); line-height: 1.2; margin-bottom: 6px; }
   .proj-chips { display: flex; flex-wrap: wrap; gap: 5px; }
 
-  .proj-right {
-    display: flex; flex-direction: column;
-    align-items: flex-end; gap: 10px; flex-shrink: 0;
-  }
-
-  .proj-kpi {
-    font-family: var(--mono); font-size: 10px;
-    font-weight: 500;
-    color: var(--primary);
-    background: rgba(30,214,52,0.1);
-    border-radius: 20px;
-    padding: 4px 12px;
-    white-space: nowrap;
-    letter-spacing: 0.04em;
-  }
+  .proj-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+  .proj-kpi { font-family: var(--mono); font-size: 10px; color: var(--primary); white-space: nowrap; letter-spacing: 0.05em; }
 
   .proj-toggle {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--border2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: 400;
-    color: var(--text3);
-    line-height: 1;
-    transition: background 0.25s, color 0.25s, transform 0.3s;
-    font-family: var(--mono);
+    font-family: var(--mono); font-size: 18px;
+    color: var(--dim); line-height: 1;
+    transition: transform 0.3s, color 0.2s;
   }
-  .proj-item.open .proj-toggle {
-    background: var(--primary);
-    color: var(--bg);
-    transform: rotate(45deg);
-  }
+  .proj-item.open .proj-toggle { transform: rotate(45deg); color: var(--primary); }
 
   /* Detail panel */
-  .proj-detail { display: none; }
-  .proj-item.open .proj-detail { display: block; }
+  .proj-detail { display: none; flex-direction: column; }
+  .proj-item.open .proj-detail { display: flex; }
 
   .proj-detail-scroll {
-    max-height: 72vh;
+    max-height: 70vh;
     overflow-y: auto;
-    padding: 2.5rem 2rem 2.5rem 2rem;
+    padding: 2.5rem 2rem 2.5rem 5rem;
     display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 2rem;
+    grid-template-columns: 1fr 280px;
+    gap: 2.5rem;
     scrollbar-width: thin;
-    scrollbar-color: var(--border) var(--bg2);
+    scrollbar-color: var(--wire) var(--surface);
   }
   .proj-detail-scroll::-webkit-scrollbar { width: 4px; }
-  .proj-detail-scroll::-webkit-scrollbar-track { background: var(--bg2); border-radius: 4px; }
-  .proj-detail-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .proj-detail-scroll::-webkit-scrollbar-track { background: var(--surface); }
+  .proj-detail-scroll::-webkit-scrollbar-thumb { background: var(--wire); border-radius: 2px; }
 
-  /* Narrative */
+  /* Left narrative */
   .detail-left { display: flex; flex-direction: column; gap: 2rem; }
 
-  .detail-block { display: flex; flex-direction: column; gap: 0.5rem; }
-
-  .detail-label {
+  .detail-block-label {
     font-family: var(--mono); font-size: 9px;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--primary); font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--primary); margin-bottom: 0.4rem;
     display: flex; align-items: center; gap: 8px;
   }
-  .detail-label::before {
-    content:''; display:block; width:14px; height:2px;
-    background:var(--primary); border-radius:1px;
-  }
+  .detail-block-label::before { content: ''; display: block; width: 14px; height: 1px; background: var(--primary); }
 
-  .detail-text {
-    font-size: 0.9rem; color: var(--text2);
-    line-height: 1.8; font-weight: 300;
-  }
-  .detail-text strong { color: var(--text); font-weight: 600; }
+  .detail-text { font-size: 0.9rem; color: var(--dim); line-height: 1.8; font-weight: 300; }
+  .detail-text strong { color: var(--text); font-weight: 500; }
 
-  /* What I did */
-  .did-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 0.85rem;
-    counter-reset: did;
-  }
+  /* Numbered steps */
+  .did-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; counter-reset: did; }
   .did-list li {
     counter-increment: did;
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 0.75rem;
-    font-size: 0.875rem; color: var(--text2);
-    line-height: 1.7; font-weight: 300;
-    align-items: start;
+    display: grid; grid-template-columns: 1.5rem 1fr;
+    gap: 0.75rem; font-size: 0.875rem; color: var(--dim);
+    line-height: 1.7; font-weight: 300; align-items: start;
   }
   .did-list li::before {
     content: counter(did, decimal-leading-zero);
-    font-family: var(--mono); font-size: 9.5px;
-    color: var(--bg); background: var(--primary);
-    border-radius: 4px;
-    width: 22px; height: 22px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-weight: 500; margin-top: 2px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--primary); padding-top: 2px;
   }
 
-  /* What I learned */
-  .learned-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 0.65rem;
-  }
+  /* Learned bullets */
+  .learned-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
   .learned-list li {
-    font-size: 0.875rem; color: var(--text2);
+    font-size: 0.875rem; color: var(--dim);
     line-height: 1.65; font-weight: 300;
-    display: flex; gap: 0.75rem; align-items: flex-start;
+    display: flex; gap: 0.6rem; align-items: flex-start;
   }
-  .learned-list li::before {
-    content: '▸';
-    color: var(--accent); font-size: 11px;
-    flex-shrink: 0; margin-top: 3px;
-  }
+  .learned-list li::before { content: '▸'; color: var(--accent); font-size: 10px; flex-shrink: 0; margin-top: 4px; }
 
   /* Sidebar */
-  .detail-right { display: flex; flex-direction: column; gap: 12px; }
+  .detail-right { display: flex; flex-direction: column; gap: 1.25rem; }
 
-  .detail-card {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
+  .data-card {
+    background: var(--surface);
+    border: 1px solid var(--edge);
     padding: 1.1rem;
   }
-
-  .detail-card-label {
+  .data-card-label {
     font-family: var(--mono); font-size: 8.5px;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--text3); margin-bottom: 0.85rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border2);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--dim); margin-bottom: 0.85rem;
+    border-bottom: 1px solid var(--edge); padding-bottom: 0.5rem;
   }
 
   .spec-table { width: 100%; border-collapse: collapse; }
-  .spec-table tr { border-bottom: 1px solid var(--border2); }
+  .spec-table tr { border-bottom: 1px solid var(--edge); }
   .spec-table tr:last-child { border-bottom: none; }
   .spec-table td { padding: 5px 0; font-size: 0.8rem; }
-  .spec-table td:first-child {
-    color: var(--text3); font-family: var(--mono);
-    font-size: 9px; letter-spacing: 0.04em; width: 50%;
-  }
-  .spec-table td:last-child { color: var(--text); text-align: right; font-weight: 500; font-size: 0.82rem; }
+  .spec-table td:first-child { color: var(--dim); font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; width: 50%; }
+  .spec-table td:last-child { color: var(--text); text-align: right; font-weight: 500; }
 
   .result-box {
     background: var(--secondary);
-    border: 1.5px solid rgba(30,214,52,0.25);
-    border-radius: 10px;
+    border: 1px solid rgba(30,214,52,0.25);
     padding: 1.25rem;
   }
   .result-big {
-    font-family: var(--serif);
-    font-size: 2.6rem; font-weight: 700;
-    color: var(--primary); line-height: 1;
-    margin-bottom: 6px;
+    font-family: var(--cond); font-size: 2.6rem; font-weight: 700;
+    color: var(--primary); line-height: 1; margin-bottom: 6px;
   }
-  .result-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+  .result-desc { font-size: 0.78rem; color: var(--dim); line-height: 1.5; }
 
-  .detail-links {
-    display: flex; gap: 0.75rem; flex-wrap: wrap;
-    padding-top: 0.25rem;
-  }
+  .detail-links { display: flex; gap: 1rem; flex-wrap: wrap; padding-top: 0.25rem; }
   .detail-links a {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text2); text-decoration: none;
-    padding: 7px 14px; border-radius: 6px;
-    border: 1px solid var(--border);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--primary); text-decoration: none;
     display: flex; align-items: center; gap: 5px;
-    transition: all 0.2s;
+    transition: color 0.2s;
   }
-  .detail-links a:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    background: var(--secondary);
-  }
+  .detail-links a:hover { color: var(--dim); }
   .detail-links a svg { width: 12px; height: 12px; stroke: currentColor; }
 
   @keyframes slideDown {
@@ -270,8 +167,8 @@
   .proj-item.open .proj-detail { animation: slideDown 0.22s ease; }
 
   @media (max-width: 760px) {
-    .proj-detail-scroll { grid-template-columns: 1fr; }
-    .proj-summary { grid-template-columns: 36px 1fr auto; padding: 1.1rem 1rem; gap: 0.75rem; }
+    .proj-detail-scroll { grid-template-columns: 1fr; padding-left: 1.5rem; }
+    .proj-summary { grid-template-columns: 32px 1fr auto; padding: 1.25rem 1rem; gap: 0.75rem; }
     .proj-page { padding: 3rem 1rem 4rem; }
   }
   </style>
@@ -279,7 +176,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html"><span class="nav-logo-dot"></span>Aryan Husain</a>
+  <a class="nav-logo" href="index.html">AH<span>_</span>MENG</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="experience.html">Experience</a></li>
@@ -287,18 +184,18 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="theme-toggle-wrap">
-    <span class="theme-toggle-icon">☀️</span>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
-    <span class="theme-toggle-icon">🌙</span>
+    <span class="theme-icon">☀️</span>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    <span class="theme-icon">🌙</span>
   </div>
 </nav>
 
 <div class="page-wrap">
 <div class="proj-page">
 
-  <div class="eyebrow fade-up">Engineering Work</div>
-  <h1 class="page-title fade-up fade-up-d1">Projects</h1>
-  <p class="proj-hint fade-up fade-up-d2">Click any project to expand — scroll within the panel to read through</p>
+  <div class="section-eyebrow fade-up">Engineering Work</div>
+  <h1 class="section-title fade-up fade-up-d1">Projects</h1>
+  <p class="proj-hint fade-up fade-up-d2">Click any project to expand — scroll inside to read through</p>
 
   <div class="proj-list">
 
@@ -310,10 +207,7 @@
           <div class="proj-category">Thermal Systems</div>
           <div class="proj-title">Compact Heat Exchanger for UAV Cooling</div>
           <div class="proj-chips">
-            <span class="chip">ANSYS Fluent</span>
-            <span class="chip">SolidWorks</span>
-            <span class="chip">CFD</span>
-            <span class="chip chip-accent">Al 6061</span>
+            <span class="chip">ANSYS Fluent</span><span class="chip">SolidWorks</span><span class="chip">CFD</span><span class="chip chip-accent">Al 6061</span>
           </div>
         </div>
         <div class="proj-right">
@@ -324,12 +218,12 @@
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div class="detail-block">
-              <div class="detail-label">What the project is</div>
+            <div>
+              <div class="detail-block-label">What the project is</div>
               <p class="detail-text">UAV propulsion motors generate significant heat at sustained high thrust. This project designed a <strong>cross-flow microchannel heat exchanger</strong> for a 12 kg fixed-wing UAV, replacing a bulky fin array with a compact brazed-aluminium unit integrating directly into the nacelle structure. Goal: reject 180W continuously at 55°C ambient within 80 × 60 × 20mm, under 85g.</p>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I did</div>
+            <div>
+              <div class="detail-block-label">What I did</div>
               <ol class="did-list">
                 <li>Established heat rejection targets of 180W at 55°C ambient from motor datasheets and field telemetry.</li>
                 <li>Built a parametric SolidWorks model sweeping channel width (0.4–1.2mm), fin pitch, and wall thickness across 48 geometry variants.</li>
@@ -338,13 +232,13 @@
                 <li>Introduced a bifurcated inlet manifold to resolve pressure drop issues — cut ΔP by 29% with only 4% reduction in heat transfer coefficient.</li>
               </ol>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I learned</div>
+            <div>
+              <div class="detail-block-label">What I learned</div>
               <ul class="learned-list">
-                <li>How to set up conjugate heat transfer simulations and validate CFD results against analytical correlations (Dittus-Boelter, within 4%).</li>
-                <li>The importance of pressure drop budgeting early — discovered late, it nearly invalidated the geometry.</li>
+                <li>How to set up conjugate heat transfer simulations and validate against analytical correlations (Dittus-Boelter, within 4%).</li>
+                <li>Pressure drop budgeting must happen early — discovered late, it nearly invalidated the geometry.</li>
                 <li>Parametric CAD + scripted mesh export pipelines dramatically accelerate multi-variant CFD studies.</li>
-                <li>Simulation-to-hardware agreement within 6°C is achievable with careful material property inputs and boundary condition calibration.</li>
+                <li>Simulation-to-hardware agreement within 6°C is achievable with careful material property inputs.</li>
               </ul>
             </div>
             <div class="detail-links">
@@ -353,8 +247,8 @@
             </div>
           </div>
           <div class="detail-right">
-            <div class="detail-card">
-              <div class="detail-card-label">Key specifications</div>
+            <div class="data-card">
+              <div class="data-card-label">Key specifications</div>
               <table class="spec-table">
                 <tr><td>Heat rejection</td><td>181W @ 55°C</td></tr>
                 <tr><td>Channel width</td><td>0.7mm</td></tr>
@@ -382,10 +276,7 @@
           <div class="proj-category">Structural Analysis</div>
           <div class="proj-title">Topology-Optimised Bicycle Crank Arm</div>
           <div class="proj-chips">
-            <span class="chip">Abaqus FEA</span>
-            <span class="chip">Altair OptiStruct</span>
-            <span class="chip">SLS Printing</span>
-            <span class="chip chip-accent">Nylon PA12</span>
+            <span class="chip">Abaqus FEA</span><span class="chip">Altair OptiStruct</span><span class="chip">SLS Printing</span><span class="chip chip-accent">Nylon PA12</span>
           </div>
         </div>
         <div class="proj-right">
@@ -396,12 +287,12 @@
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div class="detail-block">
-              <div class="detail-label">What the project is</div>
-              <p class="detail-text">Applied <strong>topology optimisation</strong> to redistribute material in a road bicycle crank arm only where structurally necessary, then manufactured the organic result via Selective Laser Sintering — a process that can realise the complex geometries TO produces, unlike conventional machining. Goal: maximum mass reduction without FoS dropping below 3.5.</p>
+            <div>
+              <div class="detail-block-label">What the project is</div>
+              <p class="detail-text">Applied <strong>topology optimisation</strong> to redistribute material in a road bicycle crank arm only where structurally necessary, then manufactured the organic result via Selective Laser Sintering. Goal: maximum mass reduction without FoS dropping below 3.5.</p>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I did</div>
+            <div>
+              <div class="detail-block-label">What I did</div>
               <ol class="did-list">
                 <li>Extracted peak pedal forces from a power meter during a maximal sprint — 1,450N downward, 320N lateral, 85Nm torsion.</li>
                 <li>Meshed the original alloy crank in Abaqus with C3D10 tetra elements (avg 1.8mm) and validated against published strain-gauge data.</li>
@@ -410,12 +301,12 @@
                 <li>Printed at 0.1mm layer height, media-blasted, and fatigue-tested to 100k cycles at 1.5× design load — zero cracking.</li>
               </ol>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I learned</div>
+            <div>
+              <div class="detail-block-label">What I learned</div>
               <ul class="learned-list">
-                <li>Topology optimisation gives a stress-flow map, not a finished geometry — B-rep reconstruction is a significant skill in itself.</li>
+                <li>Topology optimisation gives a stress-flow map, not a finished geometry — B-rep reconstruction is a significant skill.</li>
                 <li>SIMP penalisation and volume fraction are sensitive — small changes produce very different material distributions.</li>
-                <li>SLS opens up geometries machining cannot, but minimum member size constraints must be baked into the optimisation setup.</li>
+                <li>SLS opens up geometries machining cannot, but minimum member size constraints must be built into the optimisation setup.</li>
                 <li>Stiffness can increase even as mass drops if material is redistributed along principal stress trajectories.</li>
               </ul>
             </div>
@@ -425,8 +316,8 @@
             </div>
           </div>
           <div class="detail-right">
-            <div class="detail-card">
-              <div class="detail-card-label">Simulation parameters</div>
+            <div class="data-card">
+              <div class="data-card-label">Simulation parameters</div>
               <table class="spec-table">
                 <tr><td>Mesh type</td><td>C3D10 tetra</td></tr>
                 <tr><td>Element size</td><td>1.8mm avg</td></tr>
@@ -453,10 +344,7 @@
           <div class="proj-category">Mechatronics</div>
           <div class="proj-title">6-DOF Robotic Arm for Precision Assembly</div>
           <div class="proj-chips">
-            <span class="chip">MATLAB</span>
-            <span class="chip">SolidWorks</span>
-            <span class="chip">Servo Control</span>
-            <span class="chip chip-accent">Arduino</span>
+            <span class="chip">MATLAB</span><span class="chip">SolidWorks</span><span class="chip">Servo Control</span><span class="chip chip-accent">Arduino</span>
           </div>
         </div>
         <div class="proj-right">
@@ -467,27 +355,27 @@
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div class="detail-block">
-              <div class="detail-label">What the project is</div>
-              <p class="detail-text">Built a <strong>desktop 6-DOF robotic manipulator</strong> from scratch — custom-machined aluminium links, hobby servos, and a MATLAB-derived inverse kinematics solver running on an Arduino Mega — achieving ±0.2mm end-effector repeatability at under £420 total BOM. Designed for PCB component pick-and-place tasks.</p>
+            <div>
+              <div class="detail-block-label">What the project is</div>
+              <p class="detail-text">Built a <strong>desktop 6-DOF robotic manipulator</strong> from scratch — custom-machined aluminium links, hobby servos, and a MATLAB-derived inverse kinematics solver running on an Arduino Mega. Achieved ±0.2mm end-effector repeatability at under £420 total BOM. Designed for PCB component pick-and-place tasks.</p>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I did</div>
+            <div>
+              <div class="detail-block-label">What I did</div>
               <ol class="did-list">
                 <li>Derived forward kinematics using modified DH parameters in MATLAB Symbolic Toolbox; workspace analysis confirmed 280mm reach with no singularities in the assembly plane.</li>
                 <li>Designed links as hollow Al 6061 extrusions in SolidWorks; FEA confirmed deflection under 0.15mm at full reach with 200g payload.</li>
                 <li>Implemented a closed-form IK solver using Pieper's method; Jacobian-based singularity detection with automatic trajectory replanning.</li>
                 <li>Tuned PID gains using Ziegler-Nichols then refined with MATLAB System Identification; ran gravity compensation from least-squares equilibrium measurements at 20 configurations.</li>
-                <li>Implemented a backlash compensation algorithm — always approach from same direction — reducing effective backlash from 0.8° to 0.05°.</li>
+                <li>Implemented a backlash compensation algorithm — reducing effective backlash from 0.8° to 0.05°.</li>
               </ol>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I learned</div>
+            <div>
+              <div class="detail-block-label">What I learned</div>
               <ul class="learned-list">
                 <li>Hobby servos have enough precision for sub-mm work if backlash is actively compensated for in software and mechanically preloaded out of joints.</li>
                 <li>Gravity compensation is not optional — without it, positioning error nearly doubles in extended-reach configurations.</li>
                 <li>Fixed-point arithmetic on Arduino Mega can run a full IK solve at 200Hz if the algorithm avoids floating-point operations.</li>
-                <li>Repeatability and accuracy are distinct — high repeatability but absolute accuracy drifts with temperature; learned to design around the more controllable metric.</li>
+                <li>Repeatability and accuracy are distinct — high repeatability but absolute accuracy drifts with temperature.</li>
               </ul>
             </div>
             <div class="detail-links">
@@ -496,8 +384,8 @@
             </div>
           </div>
           <div class="detail-right">
-            <div class="detail-card">
-              <div class="detail-card-label">System specs</div>
+            <div class="data-card">
+              <div class="data-card-label">System specs</div>
               <table class="spec-table">
                 <tr><td>DOF</td><td>6 (6R)</td></tr>
                 <tr><td>Reach</td><td>280mm</td></tr>
@@ -524,10 +412,7 @@
           <div class="proj-category">Materials &amp; Manufacturing</div>
           <div class="proj-title">CFRP Layup Optimisation for Motorsport Panel</div>
           <div class="proj-chips">
-            <span class="chip">Nastran</span>
-            <span class="chip">Composite FEA</span>
-            <span class="chip">CFRP</span>
-            <span class="chip chip-accent">Autoclave</span>
+            <span class="chip">Nastran</span><span class="chip">Composite FEA</span><span class="chip">CFRP</span><span class="chip chip-accent">Autoclave</span>
           </div>
         </div>
         <div class="proj-right">
@@ -538,27 +423,27 @@
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div class="detail-block">
-              <div class="detail-label">What the project is</div>
-              <p class="detail-text">Optimised the <strong>fibre orientation and ply stacking sequence</strong> of a T300/epoxy prepreg front splitter to minimise interlaminar shear stress — the dominant failure mode — while reducing ply count and layup time. The panel must resist up to 400N downforce at 130km/h without aeroelastic distortion that changes diffuser gap height.</p>
+            <div>
+              <div class="detail-block-label">What the project is</div>
+              <p class="detail-text">Optimised the <strong>fibre orientation and ply stacking sequence</strong> of a T300/epoxy prepreg front splitter to minimise interlaminar shear stress — the dominant failure mode — while reducing ply count and layup time. The panel must resist up to 400N downforce at 130km/h.</p>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I did</div>
+            <div>
+              <div class="detail-block-label">What I did</div>
               <ol class="did-list">
                 <li>Ran steady RANS CFD (k-ω SST) on the full car geometry to extract pressure distribution at 5 speeds; peak 3.1 kPa at the leading edge.</li>
                 <li>Modelled the baseline [0/±45/90]s 8-ply layup with Nastran PCOMP cards; found interlaminar shear stress at 14.2 MPa — above the 12 MPa design limit.</li>
                 <li>Ran a full-factorial Design of Experiments across fibre orientation and ply ordering (81 candidates) using OptiStruct composite optimiser.</li>
-                <li>Selected [±30/0/90]s sequence based on minimum ILS criterion; reduced stress to 11.1 MPa and ply count from 8 to 6.</li>
-                <li>Manufactured via autoclave at 125°C / 6 bar; UT C-scan confirmed void content 0.8% (limit: 2%). Flatness 0.3mm over 600mm span.</li>
+                <li>Selected [±30/0/90]s sequence; reduced ILS to 11.1 MPa and ply count from 8 to 6.</li>
+                <li>Manufactured via autoclave at 125°C / 6 bar; UT C-scan confirmed void content 0.8%. Flatness 0.3mm over 600mm span.</li>
               </ol>
             </div>
-            <div class="detail-block">
-              <div class="detail-label">What I learned</div>
+            <div>
+              <div class="detail-block-label">What I learned</div>
               <ul class="learned-list">
                 <li>Fibre angle has a non-linear effect on ILS — rotating from 0° to ±30° redistributes in-plane shear between layers counterintuitively.</li>
-                <li>Design of Experiments is far more efficient than manual iteration for composite stacking problems with many interacting variables.</li>
+                <li>Design of Experiments is far more efficient than manual iteration for composite stacking problems.</li>
                 <li>Layup quality determines whether the FEA prediction holds — manufacturing process control matters as much as design optimisation.</li>
-                <li>CFD-to-structural co-simulation workflows require careful mesh interpolation; a coordinate system mismatch cost two days of debugging.</li>
+                <li>CFD-to-structural co-simulation workflows require careful mesh interpolation at the boundary.</li>
               </ul>
             </div>
             <div class="detail-links">
@@ -567,8 +452,8 @@
             </div>
           </div>
           <div class="detail-right">
-            <div class="detail-card">
-              <div class="detail-card-label">Layup details</div>
+            <div class="data-card">
+              <div class="data-card-label">Layup details</div>
               <table class="spec-table">
                 <tr><td>Material</td><td>T300/epoxy</td></tr>
                 <tr><td>Baseline</td><td>[0/±45/90]s</td></tr>
@@ -591,32 +476,30 @@
 </div>
 
 <footer>
-  <div class="footer-left">
-    <p>© 2025 Aryan Husain</p>
-    <p>Memorial University of Newfoundland</p>
-  </div>
-  <div class="footer-dot">AH</div>
-  <p><a href="mailto:arysain05@gmail.com">arysain05@gmail.com</a></p>
+  <p>© 2025 Aryan Husain — Memorial University of Newfoundland</p>
+  <p><a href="contact.html">arysain05@gmail.com</a></p>
 </footer>
 </div>
 
 <script>
-  const html = document.documentElement;
-  const btn  = document.getElementById('themeToggle');
-  const saved = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-theme', saved);
-  btn.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  });
+  (function(){
+    var html = document.documentElement;
+    var btn  = document.getElementById('themeToggle');
+    var saved = localStorage.getItem('ah-theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    btn.addEventListener('click', function(){
+      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('ah-theme', next);
+    });
+  })();
   function toggle(id) {
-    const item = document.getElementById(id);
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.proj-item.open').forEach(el => el.classList.remove('open'));
+    var item = document.getElementById(id);
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.proj-item.open').forEach(function(el){ el.classList.remove('open'); });
     if (!isOpen) {
       item.classList.add('open');
-      setTimeout(() => item.scrollIntoView({ behavior:'smooth', block:'nearest' }), 80);
+      setTimeout(function(){ item.scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 80);
     }
   }
 </script>
