@@ -3,31 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aryan Abidi — Mechanical Engineer</title>
+  <title>Aryan Husain — Mechanical Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --steel:    #0d1117;
-      --panel:    #161b22;
-      --surface:  #1c2330;
-      --edge:     #21262d;
-      --muted:    #30363d;
-      --wire:     #3d4f63;
-      --dim:      #8b949e;
-      --body:     #c9d1d9;
-      --bright:   #e6edf3;
-      --accent:   #4caf7d;
-      --gold:     #d4a647;
-      --green:    #3fb950;
-      --mono:     'Share Tech Mono', monospace;
-      --sans:     'Barlow', sans-serif;
-      --cond:     'Barlow Condensed', sans-serif;
+      --steel:   #0d1117;
+      --panel:   #161b22;
+      --surface: #1c2330;
+      --edge:    #21262d;
+      --muted:   #30363d;
+      --wire:    #3d4f63;
+      --dim:     #8b949e;
+      --body:    #c9d1d9;
+      --bright:  #e6edf3;
+      --accent:  #4caf7d;
+      --gold:    #d4a647;
+      --green:   #3fb950;
+      --mono:    'Share Tech Mono', monospace;
+      --sans:    'Barlow', sans-serif;
+      --cond:    'Barlow Condensed', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -39,625 +38,341 @@
       overflow-x: hidden;
     }
 
-    /* Blueprint grid background */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(76, 175, 125, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(76, 175, 125, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(76,175,125,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76,175,125,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(13, 17, 23, 0.92);
+      background: rgba(13,17,23,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--edge);
       padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       height: 56px;
     }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-    }
-
+    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.08em; }
     .nav-logo span { color: var(--dim); }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.2s; }
     nav a:hover { color: var(--accent); }
 
-    /* ── HERO ── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 2rem 4rem;
-      overflow: hidden;
-    }
+    /* HERO */
+    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 80px 2rem 4rem; overflow: hidden; }
+    .hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-tag::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
+    h1 { font-family: var(--cond); font-size: clamp(3rem,6vw,5.5rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.01em; color: var(--bright); margin-bottom: 1rem; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 1.1rem; color: var(--dim); max-width: 460px; margin-bottom: 2.5rem; font-weight: 300; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .hero-tag {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-family: var(--cond);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      color: var(--bright);
-      margin-bottom: 1rem;
-    }
-
-    h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--dim);
-      max-width: 460px;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--accent);
-      color: var(--steel);
-      border: none;
-      padding: 12px 28px;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.2s, transform 0.15s;
-      display: inline-block;
-    }
-
+    .btn-primary { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--accent); color: var(--steel); border: none; padding: 12px 28px; cursor: pointer; text-decoration: none; font-weight: 600; transition: background 0.2s, transform 0.15s; display: inline-block; }
     .btn-primary:hover { background: #6dcf9e; transform: translateY(-1px); }
-
-    .btn-outline {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--body);
-      border: 1px solid var(--wire);
-      padding: 12px 28px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-      display: inline-block;
-    }
-
+    .btn-outline { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; background: transparent; color: var(--body); border: 1px solid var(--wire); padding: 12px 28px; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* Engineering drawing on hero right */
-    .hero-drawing {
-      position: relative;
-    }
+    .hero-drawing svg { width: 100%; max-width: 480px; opacity: 0.9; }
 
-    .hero-drawing svg {
-      width: 100%;
-      max-width: 480px;
-      opacity: 0.9;
-    }
-
-    /* Stats bar */
-    .stats-bar {
-      position: relative;
-      z-index: 1;
-      background: var(--panel);
-      border-top: 1px solid var(--edge);
-      border-bottom: 1px solid var(--edge);
-      padding: 1.5rem 2rem;
-    }
-
-    .stats-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-
-    .stat {
-      text-align: center;
-      padding: 0.5rem;
-      border-right: 1px solid var(--edge);
-    }
-
+    /* STATS */
+    .stats-bar { position: relative; z-index: 1; background: var(--panel); border-top: 1px solid var(--edge); border-bottom: 1px solid var(--edge); padding: 1.5rem 2rem; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .stat { text-align: center; padding: 0.5rem; border-right: 1px solid var(--edge); }
     .stat:last-child { border-right: none; }
+    .stat-num { font-family: var(--cond); font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); }
 
-    .stat-num {
-      font-family: var(--cond);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 4px;
+    /* SECTIONS */
+    section { position: relative; z-index: 1; padding: 6rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
+    .section-num { font-family: var(--mono); font-size: 11px; color: var(--wire); letter-spacing: 0.1em; }
+    h2 { font-family: var(--cond); font-size: 2.2rem; font-weight: 700; color: var(--bright); letter-spacing: 0.02em; text-transform: uppercase; }
+    .section-rule { flex: 1; height: 1px; background: var(--edge); }
+
+    /* PROJECTS */
+    #projects { background: var(--panel); }
+
+    .project-item {
+      border: 1px solid var(--edge);
+      background: var(--surface);
+      margin-bottom: 2px;
+      transition: border-color 0.2s;
     }
+    .project-item:hover { border-color: var(--wire); }
+    .project-item.open { border-color: var(--accent); }
 
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 2rem;
-    }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
+    /* Summary row — always visible */
+    .project-summary {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr auto;
+      align-items: center;
       gap: 1.5rem;
-      margin-bottom: 3.5rem;
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .section-num {
+    .project-index {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--wire);
       letter-spacing: 0.1em;
     }
 
-    h2 {
-      font-family: var(--cond);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--bright);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
+    .project-summary-main { display: flex; flex-direction: column; gap: 0.4rem; }
 
-    .section-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--edge);
-    }
-
-    /* ── PROJECTS ── */
-    #projects { background: var(--panel); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5px;
-      background: var(--edge);
-      border: 1.5px solid var(--edge);
-    }
-
-    .project-card {
-      background: var(--surface);
-      padding: 2rem;
-      transition: background 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .project-card:hover::before { transform: scaleX(1); }
-    .project-card:hover { background: #1e2733; }
-
-    .project-type {
+    .project-type-badge {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.75rem;
     }
 
-    .project-card h3 {
+    .project-title {
       font-family: var(--cond);
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--bright);
-      margin-bottom: 0.75rem;
       line-height: 1.2;
     }
 
-    .project-card p {
-      font-size: 0.9rem;
-      color: var(--dim);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-
-    .project-tags {
+    .project-summary-meta {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--muted);
-      color: var(--dim);
-      padding: 3px 10px;
-      border: 1px solid var(--wire);
-    }
-
-    .project-links {
-      display: flex;
+      align-items: center;
       gap: 1rem;
     }
 
-    .project-links a {
+    .project-kpi {
       font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.1em;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .project-toggle {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--dim);
+      transition: transform 0.3s, color 0.2s;
+      line-height: 1;
+    }
+    .project-item.open .project-toggle { transform: rotate(45deg); color: var(--accent); }
+
+    /* Tags in summary */
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.25rem; }
+    .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--muted); color: var(--dim); padding: 2px 8px; border: 1px solid var(--wire); }
+
+    /* Expanded case study panel */
+    .project-detail {
+      display: none;
+      border-top: 1px solid var(--edge);
+      padding: 2.5rem 2rem 2.5rem 6rem;
+      gap: 3rem;
+    }
+    .project-item.open .project-detail { display: grid; grid-template-columns: 1fr 340px; }
+
+    /* Left: narrative */
+    .detail-narrative { display: flex; flex-direction: column; gap: 2rem; }
+
+    .detail-section-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
-      text-decoration: none;
+      margin-bottom: 0.4rem;
+    }
+
+    .detail-body {
+      font-size: 0.9rem;
+      color: var(--dim);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .detail-body strong { color: var(--body); font-weight: 500; }
+
+    /* Process timeline */
+    .process-timeline { display: flex; flex-direction: column; gap: 0; }
+    .process-step {
+      display: grid;
+      grid-template-columns: 1.5rem 1fr;
+      gap: 0.75rem;
+      position: relative;
+    }
+    .process-step + .process-step { margin-top: 0; }
+    .step-spine {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
     }
-
-    .project-links a:hover { color: #6dcf9e; }
-
-    .project-links a svg {
-      width: 13px; height: 13px;
-      stroke: currentColor;
+    .step-dot {
+      width: 8px; height: 8px;
+      border: 1.5px solid var(--accent);
+      background: var(--surface);
+      flex-shrink: 0;
+      margin-top: 4px;
     }
-
-    .project-metric {
-      position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
+    .step-line {
+      width: 1px;
+      flex: 1;
+      background: var(--edge);
+      min-height: 24px;
+    }
+    .process-step:last-child .step-line { display: none; }
+    .step-content { padding-bottom: 1.5rem; }
+    .step-phase {
       font-family: var(--mono);
       font-size: 10px;
-      color: var(--green);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--dim);
+      line-height: 1.6;
+      font-weight: 300;
     }
 
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
+    /* Right: data panel */
+    .detail-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
 
-    .skill-group {
+    .data-card {
       background: var(--panel);
       border: 1px solid var(--edge);
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
 
-    .skill-group-title {
+    .data-card-label {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--dim);
       margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--edge);
     }
 
-    .skill-list {
-      list-style: none;
+    /* Bar chart */
+    .bar-chart { display: flex; flex-direction: column; gap: 0.6rem; }
+    .bar-row { display: grid; grid-template-columns: 80px 1fr 40px; gap: 8px; align-items: center; }
+    .bar-label { font-family: var(--mono); font-size: 10px; color: var(--dim); text-align: right; }
+    .bar-track { background: var(--muted); height: 6px; border-radius: 0; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 0; transition: width 0.6s ease; }
+    .bar-fill.before { background: var(--wire); }
+    .bar-val { font-family: var(--mono); font-size: 10px; color: var(--body); }
+
+    /* Spec table */
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table tr { border-bottom: 1px solid var(--edge); }
+    .spec-table tr:last-child { border-bottom: none; }
+    .spec-table td { padding: 6px 0; font-size: 0.82rem; }
+    .spec-table td:first-child { color: var(--dim); font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; width: 50%; }
+    .spec-table td:last-child { color: var(--body); text-align: right; }
+
+    /* Result highlight */
+    .result-highlight {
+      background: rgba(76,175,125,0.07);
+      border: 1px solid rgba(76,175,125,0.25);
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 4px;
     }
-
-    .skill-list li {
-      font-size: 0.875rem;
-      color: var(--body);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .skill-list li::before {
-      content: '▸';
-      color: var(--wire);
-      font-size: 10px;
-    }
-
-    /* ── ABOUT ── */
-    #about { background: var(--panel); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--dim);
-      margin-bottom: 1.25rem;
-      line-height: 1.8;
-      font-weight: 300;
-    }
-
-    .about-text p strong {
-      color: var(--body);
-      font-weight: 500;
-    }
-
-    .edu-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .edu-item {
-      border-left: 2px solid var(--wire);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-
-    .edu-item::before {
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 6px;
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-    }
-
-    .edu-degree {
+    .result-num {
       font-family: var(--cond);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--bright);
-    }
-
-    .edu-school {
-      font-size: 0.875rem;
+      font-size: 2.4rem;
+      font-weight: 700;
       color: var(--accent);
-      margin: 2px 0;
+      line-height: 1;
     }
+    .result-desc { font-size: 0.8rem; color: var(--dim); line-height: 1.5; }
 
-    .edu-year {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--dim);
-      letter-spacing: 0.1em;
+    /* Links in detail */
+    .detail-links { display: flex; gap: 1rem; padding-top: 0.5rem; }
+    .detail-links a {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s;
     }
+    .detail-links a:hover { color: #6dcf9e; }
+    .detail-links a svg { width: 13px; height: 13px; stroke: currentColor; }
 
-    /* ── CONTACT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.5rem; }
+    .skill-group { background: var(--panel); border: 1px solid var(--edge); padding: 1.5rem; }
+    .skill-group-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--edge); }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-list li { font-size: 0.875rem; color: var(--body); display: flex; align-items: center; gap: 0.5rem; }
+    .skill-list li::before { content: '▸'; color: var(--wire); font-size: 10px; }
 
-    .contact-info p {
-      color: var(--dim);
-      font-weight: 300;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
+    /* ABOUT */
+    #about { background: var(--panel); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--dim); margin-bottom: 1.25rem; line-height: 1.8; font-weight: 300; }
+    .about-text p strong { color: var(--body); font-weight: 500; }
+    .edu-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+    .edu-item { border-left: 2px solid var(--wire); padding-left: 1.25rem; position: relative; }
+    .edu-item::before { content: ''; position: absolute; left: -5px; top: 6px; width: 8px; height: 8px; background: var(--accent); }
+    .edu-degree { font-family: var(--cond); font-size: 1rem; font-weight: 600; color: var(--bright); }
+    .edu-school { font-size: 0.875rem; color: var(--accent); margin: 2px 0; }
+    .edu-year { font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: 0.1em; }
 
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-family: var(--mono);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      color: var(--body);
-      text-decoration: none;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--edge);
-      background: var(--panel);
-      transition: border-color 0.2s, color 0.2s;
-    }
-
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info p { color: var(--dim); font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; color: var(--body); text-decoration: none; padding: 0.75rem 1rem; border: 1px solid var(--edge); background: var(--panel); transition: border-color 0.2s, color 0.2s; }
     .contact-link:hover { border-color: var(--accent); color: var(--accent); }
-
-    .contact-link svg {
-      width: 16px; height: 16px;
-      stroke: currentColor;
-      flex-shrink: 0;
-    }
-
-    /* Contact form */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .form-group label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      background: var(--panel);
-      border: 1px solid var(--muted);
-      color: var(--body);
-      padding: 10px 14px;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-      resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
-    }
-
+    .contact-link svg { width: 16px; height: 16px; stroke: currentColor; flex-shrink: 0; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); }
+    .form-group input, .form-group textarea { background: var(--panel); border: 1px solid var(--muted); color: var(--body); padding: 10px 14px; font-family: var(--sans); font-size: 0.9rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
     .form-group textarea { min-height: 100px; }
 
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      background: var(--steel);
-      border-top: 1px solid var(--edge);
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    footer p {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--wire);
-      letter-spacing: 0.08em;
-    }
-
+    /* FOOTER */
+    footer { position: relative; z-index: 1; background: var(--steel); border-top: 1px solid var(--edge); padding: 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    footer p { font-family: var(--mono); font-size: 11px; color: var(--wire); letter-spacing: 0.08em; }
     footer a { color: var(--dim); text-decoration: none; }
     footer a:hover { color: var(--accent); }
 
-    /* ── MOBILE ── */
+    /* MOBILE */
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-drawing { display: none; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       nav ul { display: none; }
+      .project-item.open .project-detail { grid-template-columns: 1fr; }
+      .project-detail { padding-left: 1.5rem; }
     }
 
-    /* Animations */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-inner > * {
-      animation: fadeUp 0.7s ease both;
-    }
-
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .hero-inner > * { animation: fadeUp 0.7s ease both; }
     .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+
+    @keyframes expandIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+    .project-item.open .project-detail { animation: expandIn 0.25s ease; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">AC<span>_</span>MENG</div>
+  <div class="nav-logo">AH<span>_</span>MENG</div>
   <ul>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -671,7 +386,7 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-tag">Mechanical Engineer</div>
-      <h1>Alex<br/><em>Chen</em></h1>
+      <h1>Aryan<br/><em>Husain</em></h1>
       <p class="hero-sub">Designing precision systems — from thermal analysis to structural prototypes. Currently open to full-time roles in aerospace and advanced manufacturing.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn-primary">View Projects</a>
@@ -679,61 +394,40 @@
       </div>
     </div>
     <div class="hero-drawing">
-      <!-- Technical drawing SVG -->
       <svg viewBox="0 0 460 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Grid lines -->
         <line x1="0" y1="190" x2="460" y2="190" stroke="#1e2d3d" stroke-width="0.5" stroke-dasharray="4 4"/>
         <line x1="230" y1="0" x2="230" y2="380" stroke="#1e2d3d" stroke-width="0.5" stroke-dasharray="4 4"/>
-
-        <!-- Main component outline -->
         <rect x="80" y="80" width="300" height="220" rx="4" stroke="#3d4f63" stroke-width="1"/>
         <rect x="100" y="100" width="260" height="180" rx="2" stroke="#4caf7d" stroke-width="1.5" fill="rgba(76,175,125,0.03)"/>
-
-        <!-- Internal detail lines -->
         <line x1="100" y1="160" x2="360" y2="160" stroke="#3d4f63" stroke-width="0.75"/>
         <line x1="100" y1="220" x2="360" y2="220" stroke="#3d4f63" stroke-width="0.75"/>
         <line x1="200" y1="100" x2="200" y2="280" stroke="#3d4f63" stroke-width="0.75"/>
         <line x1="290" y1="100" x2="290" y2="280" stroke="#3d4f63" stroke-width="0.75"/>
-
-        <!-- Center circle -->
         <circle cx="230" cy="190" r="40" stroke="#4caf7d" stroke-width="1.5" fill="rgba(76,175,125,0.05)"/>
         <circle cx="230" cy="190" r="8" stroke="#4caf7d" stroke-width="1" fill="rgba(76,175,125,0.2)"/>
         <circle cx="230" cy="190" r="2" fill="#4caf7d"/>
-
-        <!-- Corner circles (bolt holes) -->
         <circle cx="120" cy="120" r="8" stroke="#3d4f63" stroke-width="1"/>
         <circle cx="340" cy="120" r="8" stroke="#3d4f63" stroke-width="1"/>
         <circle cx="120" cy="260" r="8" stroke="#3d4f63" stroke-width="1"/>
         <circle cx="340" cy="260" r="8" stroke="#3d4f63" stroke-width="1"/>
-
-        <!-- Dimension lines -->
         <line x1="80" y1="330" x2="380" y2="330" stroke="#d4a647" stroke-width="0.75"/>
         <line x1="80" y1="325" x2="80" y2="335" stroke="#d4a647" stroke-width="0.75"/>
         <line x1="380" y1="325" x2="380" y2="335" stroke="#d4a647" stroke-width="0.75"/>
         <text x="230" y="348" text-anchor="middle" fill="#d4a647" font-family="Share Tech Mono, monospace" font-size="10">300.00mm</text>
-
         <line x1="30" y1="80" x2="30" y2="300" stroke="#d4a647" stroke-width="0.75"/>
         <line x1="25" y1="80" x2="35" y2="80" stroke="#d4a647" stroke-width="0.75"/>
         <line x1="25" y1="300" x2="35" y2="300" stroke="#d4a647" stroke-width="0.75"/>
         <text x="20" y="195" text-anchor="middle" fill="#d4a647" font-family="Share Tech Mono, monospace" font-size="10" transform="rotate(-90,20,195)">220.00mm</text>
-
-        <!-- Annotation callouts -->
         <line x1="270" y1="165" x2="320" y2="135" stroke="#8b949e" stroke-width="0.75"/>
-        <circle cx="320" cy="135" r="1.5" fill="#8b949e"/>
         <text x="325" y="133" fill="#8b949e" font-family="Share Tech Mono, monospace" font-size="9">Ø80mm BORE</text>
-
         <line x1="120" y1="120" x2="55" y2="95" stroke="#8b949e" stroke-width="0.75"/>
         <text x="15" y="93" fill="#8b949e" font-family="Share Tech Mono, monospace" font-size="9">M8×1.25</text>
-
-        <!-- Title block -->
         <rect x="280" y="10" width="170" height="60" stroke="#3d4f63" stroke-width="0.75" fill="rgba(13,17,23,0.6)"/>
         <line x1="280" y1="28" x2="450" y2="28" stroke="#3d4f63" stroke-width="0.5"/>
         <line x1="280" y1="44" x2="450" y2="44" stroke="#3d4f63" stroke-width="0.5"/>
         <text x="365" y="22" text-anchor="middle" fill="#4caf7d" font-family="Share Tech Mono, monospace" font-size="9">BRACKET ASSY</text>
         <text x="365" y="38" text-anchor="middle" fill="#8b949e" font-family="Share Tech Mono, monospace" font-size="8">DWG-2024-007</text>
         <text x="365" y="54" text-anchor="middle" fill="#8b949e" font-family="Share Tech Mono, monospace" font-size="8">SCALE 1:2  REV C</text>
-
-        <!-- Cross-hatch pattern in top-left cell -->
         <rect x="100" y="100" width="100" height="60" fill="url(#hatch)" opacity="0.4"/>
         <defs>
           <pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
@@ -748,22 +442,10 @@
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat">
-      <div class="stat-num">12+</div>
-      <div class="stat-label">Projects Completed</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">5</div>
-      <div class="stat-label">CAD Platforms</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2</div>
-      <div class="stat-label">Published Papers</div>
-    </div>
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Projects Completed</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">CAD Platforms</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Published Papers</div></div>
   </div>
 </div>
 
@@ -776,101 +458,503 @@
       <div class="section-rule"></div>
     </div>
 
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-type">Thermal Systems</div>
-        <h3>Compact Heat Exchanger for UAV Cooling</h3>
-        <p>Designed a cross-flow microchannel heat exchanger for drone propulsion units. Achieved 38% improvement in heat dissipation over baseline using CFD-guided geometry optimization.</p>
-        <div class="project-tags">
-          <span class="tag">ANSYS Fluent</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">CFD</span>
-          <span class="tag">Aluminum 6061</span>
+    <!-- PROJECT 1 -->
+    <div class="project-item" id="proj-1">
+      <div class="project-summary" onclick="toggleProject('proj-1')">
+        <span class="project-index">01</span>
+        <div class="project-summary-main">
+          <span class="project-type-badge">Thermal Systems</span>
+          <span class="project-title">Compact Heat Exchanger for UAV Cooling</span>
+          <div class="project-tags">
+            <span class="tag">ANSYS Fluent</span>
+            <span class="tag">SolidWorks</span>
+            <span class="tag">CFD</span>
+            <span class="tag">Aluminum 6061</span>
+          </div>
         </div>
-        <div class="project-links">
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Case Study
-          </a>
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
+        <div class="project-summary-meta">
+          <span class="project-kpi">↑ 38% efficiency</span>
+          <span class="project-toggle">+</span>
         </div>
-        <div class="project-metric">↑ 38% efficiency</div>
       </div>
 
-      <div class="project-card">
-        <div class="project-type">Structural Analysis</div>
-        <h3>Topology-Optimised Bicycle Crank Arm</h3>
-        <p>Applied topology optimization to reduce crank arm mass by 31% while maintaining factor of safety ≥ 3.5 under peak pedaling loads. Manufactured via selective laser sintering.</p>
-        <div class="project-tags">
-          <span class="tag">Abaqus FEA</span>
-          <span class="tag">Altair OptiStruct</span>
-          <span class="tag">SLS Printing</span>
-          <span class="tag">Nylon PA12</span>
-        </div>
-        <div class="project-links">
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Case Study
-          </a>
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
-        </div>
-        <div class="project-metric">↓ 31% mass reduction</div>
-      </div>
+      <div class="project-detail">
+        <div class="detail-narrative">
 
-      <div class="project-card">
-        <div class="project-type">Mechatronics</div>
-        <h3>6-DOF Robotic Arm for Precision Assembly</h3>
-        <p>Designed and built a desktop robotic manipulator with ±0.2mm repeatability for PCB component placement. Full kinematic model implemented in MATLAB with inverse kinematics solver.</p>
-        <div class="project-tags">
-          <span class="tag">MATLAB</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">Servo Control</span>
-          <span class="tag">Arduino</span>
-        </div>
-        <div class="project-links">
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Demo Video
-          </a>
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
-        </div>
-        <div class="project-metric">±0.2mm repeatability</div>
-      </div>
+          <div>
+            <div class="detail-section-label">Overview</div>
+            <p class="detail-body">UAV propulsion motors generate significant heat at sustained high thrust — unmanaged thermal load shortens motor life and degrades power output. This project designed a <strong>cross-flow microchannel heat exchanger</strong> for a 12kg fixed-wing UAV, replacing a bulky fin array with a compact brazed-aluminium unit that integrates directly into the nacelle structure.</p>
+          </div>
 
-      <div class="project-card">
-        <div class="project-type">Materials & Manufacturing</div>
-        <h3>CFRP Layup Optimisation for Motorsport Panel</h3>
-        <p>Optimised fibre orientation and ply stacking sequence for a carbon fibre front splitter, reducing interlaminar shear stress by 22% while trimming layup time through simulation-guided scheduling.</p>
-        <div class="project-tags">
-          <span class="tag">Nastran</span>
-          <span class="tag">Composite FEA</span>
-          <span class="tag">CFRP</span>
-          <span class="tag">Autoclave</span>
-        </div>
-        <div class="project-links">
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            Report
-          </a>
-          <a href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
-        </div>
-        <div class="project-metric">↓ 22% shear stress</div>
-      </div>
+          <div>
+            <div class="detail-section-label">Design Process</div>
+            <div class="process-timeline">
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Thermal Requirement Analysis</div>
+                  <p class="step-desc">Established heat rejection target of 180W continuous at 55°C ambient from motor datasheet and field telemetry. Defined mass budget of ≤ 85g and envelope of 80 × 60 × 20mm.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Parametric CAD Modelling</div>
+                  <p class="step-desc">Built parametric SolidWorks model sweeping channel width (0.4–1.2mm), fin pitch, and wall thickness. Generated 48 geometry variants exported to ANSYS Fluent mesh pipeline via scripted SolidWorks API calls.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">CFD Simulation (ANSYS Fluent)</div>
+                  <p class="step-desc">Ran conjugate heat transfer simulations at Re 1200–4500. Identified optimal 0.7mm channel width and 1.1mm fin pitch; confirmed laminar-to-turbulent transition behaviour consistent with Dittus-Boelter correlation within 4%.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Prototype Manufacture & Test</div>
+                  <p class="step-desc">CNC-milled channels in Al 6061, vacuum-brazed headers. Bench-tested on a motor dyno with thermocouple array. Simulation-to-hardware agreement within 6°C across all load points.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div>
+            <div class="detail-section-label">Challenges</div>
+            <p class="detail-body">Pressure drop across the microchannel array initially exceeded the coolant pump head by 18%. Resolved by introducing a <strong>bifurcated inlet manifold</strong> that distributes flow evenly across two parallel channel banks, cutting pressure drop by 29% with only a 4% reduction in heat transfer coefficient.</p>
+          </div>
+
+          <div class="detail-links">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Full Report
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <div class="data-card">
+            <div class="data-card-label">Performance — before vs after</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">Baseline</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:55%"></div></div>
+                <span class="bar-val">131W</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">Optimised</span>
+                <div class="bar-track"><div class="bar-fill" style="width:76%"></div></div>
+                <span class="bar-val">181W</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">ΔT motor</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:68%"></div></div>
+                <span class="bar-val">−22°C</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <div class="data-card-label">Key specifications</div>
+            <table class="spec-table">
+              <tr><td>Heat rejection</td><td>181W @ 55°C</td></tr>
+              <tr><td>Channel width</td><td>0.7mm</td></tr>
+              <tr><td>Fin pitch</td><td>1.1mm</td></tr>
+              <tr><td>Envelope</td><td>78 × 58 × 19mm</td></tr>
+              <tr><td>Mass</td><td>76g</td></tr>
+              <tr><td>Material</td><td>Al 6061-T6</td></tr>
+              <tr><td>ΔP (design pt)</td><td>0.34 bar</td></tr>
+            </table>
+          </div>
+
+          <div class="result-highlight">
+            <div class="result-num">38%</div>
+            <div class="result-desc">improvement in heat dissipation over fin-array baseline, within original mass budget</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-item" id="proj-2">
+      <div class="project-summary" onclick="toggleProject('proj-2')">
+        <span class="project-index">02</span>
+        <div class="project-summary-main">
+          <span class="project-type-badge">Structural Analysis</span>
+          <span class="project-title">Topology-Optimised Bicycle Crank Arm</span>
+          <div class="project-tags">
+            <span class="tag">Abaqus FEA</span>
+            <span class="tag">Altair OptiStruct</span>
+            <span class="tag">SLS Printing</span>
+            <span class="tag">Nylon PA12</span>
+          </div>
+        </div>
+        <div class="project-summary-meta">
+          <span class="project-kpi">↓ 31% mass</span>
+          <span class="project-toggle">+</span>
+        </div>
+      </div>
+
+      <div class="project-detail">
+        <div class="detail-narrative">
+          <div>
+            <div class="detail-section-label">Overview</div>
+            <p class="detail-body">Road cycling cranks are loaded under complex multi-axis bending during sprinting and climbing. The goal was to apply <strong>topology optimisation</strong> to redistribute material only where it is structurally necessary, then manufacture the result via Selective Laser Sintering — a process that can realise the organic geometries TO generates, unlike conventional machining.</p>
+          </div>
+
+          <div>
+            <div class="detail-section-label">Design Process</div>
+            <div class="process-timeline">
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Load Case Definition</div>
+                  <p class="step-desc">Extracted pedal forces from a commercial power meter during a maximal sprint: peak 1,450N downward, 320N lateral, 85Nm torsion about the spindle. Three load cases combined for worst-case envelope.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Baseline FEA (Abaqus)</div>
+                  <p class="step-desc">Meshed original alloy crank with C3D10 tetra elements (avg 1.8mm), validated against published strain-gauge data. Identified over-stressed regions near spindle bore and lightly-loaded mid-section — classic mass-penalty zone.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Topology Optimisation (OptiStruct)</div>
+                  <p class="step-desc">Set volume fraction target 0.65 with minimum member size 3mm (SLS process constraint). SIMP penalisation factor p=3. Ran 42 iterations to convergence. Interpreted isosurface at 0.3 density threshold.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Geometry Reconstruction & Validation</div>
+                  <p class="step-desc">Remodelled TO result as smooth B-rep in SolidWorks using guide curves from optimised topology. Re-ran Abaqus with PA12 material card (E=1.75GPa). FoS ≥ 3.5 confirmed across all load cases.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">SLS Manufacture & Physical Testing</div>
+                  <p class="step-desc">Parts printed at 0.1mm layer height, post-processed with media blasting. Static load tested to 3× design load on a materials testing frame. No failure to 4,350N. Fatigue cycling to 100k cycles at 1.5× load — zero cracking.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="detail-section-label">Key Finding</div>
+            <p class="detail-body">The optimised geometry relocated material from the mid-arm web into two load-bearing ribs aligned with principal stress trajectories. This <strong>biologically-inspired strut pattern</strong> achieved superior stiffness-to-weight compared to the conventional ribbed extrusion — stiffness actually increased by 8% despite the mass reduction.</p>
+          </div>
+
+          <div class="detail-links">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Full Report
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <div class="data-card">
+            <div class="data-card-label">Mass &amp; stiffness comparison</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">OEM mass</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:100%"></div></div>
+                <span class="bar-val">298g</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">TO mass</span>
+                <div class="bar-track"><div class="bar-fill" style="width:69%"></div></div>
+                <span class="bar-val">206g</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">OEM stiff.</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:60%"></div></div>
+                <span class="bar-val">100%</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">TO stiff.</span>
+                <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+                <span class="bar-val">108%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <div class="data-card-label">Simulation parameters</div>
+            <table class="spec-table">
+              <tr><td>Mesh type</td><td>C3D10 tetra</td></tr>
+              <tr><td>Avg element size</td><td>1.8mm</td></tr>
+              <tr><td>Element count</td><td>~312k</td></tr>
+              <tr><td>Volume fraction</td><td>0.65</td></tr>
+              <tr><td>Min member size</td><td>3.0mm</td></tr>
+              <tr><td>TO iterations</td><td>42</td></tr>
+              <tr><td>FoS (final)</td><td>≥ 3.5</td></tr>
+            </table>
+          </div>
+
+          <div class="result-highlight">
+            <div class="result-num">31%</div>
+            <div class="result-desc">mass reduction with FoS ≥ 3.5 maintained; stiffness increased 8%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-item" id="proj-3">
+      <div class="project-summary" onclick="toggleProject('proj-3')">
+        <span class="project-index">03</span>
+        <div class="project-summary-main">
+          <span class="project-type-badge">Mechatronics</span>
+          <span class="project-title">6-DOF Robotic Arm for Precision Assembly</span>
+          <div class="project-tags">
+            <span class="tag">MATLAB</span>
+            <span class="tag">SolidWorks</span>
+            <span class="tag">Servo Control</span>
+            <span class="tag">Arduino</span>
+          </div>
+        </div>
+        <div class="project-summary-meta">
+          <span class="project-kpi">±0.2mm repeatability</span>
+          <span class="project-toggle">+</span>
+        </div>
+      </div>
+
+      <div class="project-detail">
+        <div class="detail-narrative">
+          <div>
+            <div class="detail-section-label">Overview</div>
+            <p class="detail-body">Desktop robotic arms for PCB assembly typically cost £8k–40k. This project built a <strong>desktop 6-DOF manipulator</strong> from scratch — custom machined links, hobbyist servos driven by a custom torque-compensation controller — achieving ±0.2mm end-effector repeatability at a total BOM cost under £420.</p>
+          </div>
+
+          <div>
+            <div class="detail-section-label">Design Process</div>
+            <div class="process-timeline">
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Kinematic Design & DH Parameters</div>
+                  <p class="step-desc">Chose modified Denavit-Hartenberg convention for 6R configuration. Derived forward kinematics symbolically in MATLAB Symbolic Toolbox. Workspace analysis confirmed 280mm reach sphere with no singular configurations in the assembly plane.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Structural Design (SolidWorks)</div>
+                  <p class="step-desc">Links modelled as hollow Al 6061 extrusions with servo pockets. FEA confirmed deflection under 0.15mm at full reach with 200g payload — within positioning budget. Joints use dual angular contact bearings preloaded to eliminate backlash.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Inverse Kinematics Solver</div>
+                  <p class="step-desc">Implemented closed-form IK using Pieper's method for the wrist-sphere decoupling. Jacobian-based singularity detection with automatic joint-space trajectory replanning. Solver runs at 200Hz on Arduino Mega with fixed-point arithmetic.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Controller Tuning & Calibration</div>
+                  <p class="step-desc">Gravity compensation torque model identified via least-squares from static equilibrium measurements at 20 configurations. PID gains tuned with Ziegler-Nichols, then refined with MATLAB System Identification Toolbox. Repeatability measured over 500 pick-and-place cycles with a laser displacement sensor.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="detail-section-label">Key Challenge</div>
+            <p class="detail-body">Hobby servo backlash (up to 0.8°) dominated positioning error. Mitigated by implementing a <strong>backlash compensation algorithm</strong> that always approaches a target from the same rotational direction, and by preloading joint bearings against a compliant spring element — reducing effective backlash to under 0.05°.</p>
+          </div>
+
+          <div class="detail-links">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Demo Video
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <div class="data-card">
+            <div class="data-card-label">Positioning error (mm, 500 cycles)</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">No comp.</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:85%"></div></div>
+                <span class="bar-val">0.82mm</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">+ Grav.</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:45%"></div></div>
+                <span class="bar-val">0.44mm</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">+ Backlash</span>
+                <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+                <span class="bar-val">0.19mm</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <div class="data-card-label">System specifications</div>
+            <table class="spec-table">
+              <tr><td>DOF</td><td>6 (6R)</td></tr>
+              <tr><td>Reach</td><td>280mm</td></tr>
+              <tr><td>Payload</td><td>200g</td></tr>
+              <tr><td>Repeatability</td><td>±0.19mm</td></tr>
+              <tr><td>Control rate</td><td>200Hz</td></tr>
+              <tr><td>Total BOM</td><td>£418</td></tr>
+              <tr><td>Arm mass</td><td>1.24kg</td></tr>
+            </table>
+          </div>
+
+          <div class="result-highlight">
+            <div class="result-num">±0.2mm</div>
+            <div class="result-desc">end-effector repeatability at £418 BOM vs £8k+ commercial equivalent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-item" id="proj-4">
+      <div class="project-summary" onclick="toggleProject('proj-4')">
+        <span class="project-index">04</span>
+        <div class="project-summary-main">
+          <span class="project-type-badge">Materials &amp; Manufacturing</span>
+          <span class="project-title">CFRP Layup Optimisation for Motorsport Panel</span>
+          <div class="project-tags">
+            <span class="tag">Nastran</span>
+            <span class="tag">Composite FEA</span>
+            <span class="tag">CFRP</span>
+            <span class="tag">Autoclave</span>
+          </div>
+        </div>
+        <div class="project-summary-meta">
+          <span class="project-kpi">↓ 22% shear stress</span>
+          <span class="project-toggle">+</span>
+        </div>
+      </div>
+
+      <div class="project-detail">
+        <div class="detail-narrative">
+          <div>
+            <div class="detail-section-label">Overview</div>
+            <p class="detail-body">Carbon fibre front splitters must resist downforce-induced bending (up to 400N at 130km/h) while remaining stiff enough to avoid aeroelastic distortion that changes diffuser gap height. This project optimised the <strong>ply stacking sequence and fibre orientation</strong> of a T300/epoxy prepreg splitter to minimise interlaminar shear stress — the dominant failure mode — while reducing layup complexity.</p>
+          </div>
+
+          <div>
+            <div class="detail-section-label">Design Process</div>
+            <div class="process-timeline">
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Aero Load Quantification</div>
+                  <p class="step-desc">CFD (steady RANS, k-ω SST) on full car geometry extracted pressure distribution over splitter at 5 speeds. Peak surface pressure 3.1 kPa at leading edge; dominant bending span 420mm. Results imported as distributed pressure loads in Nastran.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Baseline Composite FEA</div>
+                  <p class="step-desc">Modelled existing [0/±45/90]s 8-ply layup with PCOMP cards. Tsai-Wu failure index peaked at 0.71 at the mounting tab interface. Interlaminar shear stress 14.2 MPa — above the 12 MPa design limit for co-cured joints.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Stacking Sequence Optimisation</div>
+                  <p class="step-desc">Ran a Design of Experiments (full factorial, 3 factors × 3 levels) across orientation and ply ordering using OptiStruct composite optimiser. Symmetry and balance constraints enforced. Selected [±30/0/90]s sequence from 81 candidates based on min ILS criterion.</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-spine"><div class="step-dot"></div><div class="step-line"></div></div>
+                <div class="step-content">
+                  <div class="step-phase">Autoclave Manufacture & Inspection</div>
+                  <p class="step-desc">Prepreg cut on CNC ply cutter; laid up on CNC-machined aluminium tool. Autoclave cure at 125°C / 6 bar per manufacturer data sheet. Post-cure UT C-scan showed void content 0.8% — well within 2% aerospace limit. Flatness measured at 0.3mm over 600mm span.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="detail-section-label">Key Finding</div>
+            <p class="detail-body">Rotating the primary 0° plies to ±30° redistributes in-plane shear more evenly between layers, reducing the interlaminar peel force at the tab interface by 22%. The change also <strong>reduced ply count from 8 to 6</strong> without exceeding the deflection limit — cutting layup time by ~35 minutes per part.</p>
+          </div>
+
+          <div class="detail-links">
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Technical Report
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <div class="data-card">
+            <div class="data-card-label">Interlaminar shear stress (MPa)</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <span class="bar-label">Baseline</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:100%"></div></div>
+                <span class="bar-val">14.2</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">Optimised</span>
+                <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+                <span class="bar-val">11.1</span>
+              </div>
+              <div class="bar-row">
+                <span class="bar-label">Design limit</span>
+                <div class="bar-track"><div class="bar-fill before" style="width:85%"></div></div>
+                <span class="bar-val">12.0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <div class="data-card-label">Layup specifications</div>
+            <table class="spec-table">
+              <tr><td>Material</td><td>T300/epoxy prepreg</td></tr>
+              <tr><td>Baseline sequence</td><td>[0/±45/90]s</td></tr>
+              <tr><td>Optimised sequence</td><td>[±30/0/90]s</td></tr>
+              <tr><td>Ply count</td><td>8 → 6</td></tr>
+              <tr><td>Cure cycle</td><td>125°C / 6 bar</td></tr>
+              <tr><td>Void content</td><td>0.8%</td></tr>
+              <tr><td>Flatness</td><td>0.3mm / 600mm</td></tr>
+            </table>
+          </div>
+
+          <div class="result-highlight">
+            <div class="result-num">22%</div>
+            <div class="result-desc">reduction in interlaminar shear stress; ply count reduced from 8 to 6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -882,7 +966,6 @@
       <h2>Skills &amp; Tools</h2>
       <div class="section-rule"></div>
     </div>
-
     <div class="skills-grid">
       <div class="skill-group">
         <div class="skill-group-title">CAD / Modelling</div>
@@ -936,7 +1019,6 @@
       <h2>About</h2>
       <div class="section-rule"></div>
     </div>
-
     <div class="about-grid">
       <div class="about-text">
         <p>I'm a mechanical engineer with a focus on <strong>thermal-fluid systems</strong> and <strong>lightweight structural design</strong>. I enjoy working at the intersection of simulation and physical prototyping — I'm not satisfied until the model and the hardware agree.</p>
@@ -974,18 +1056,16 @@
       <h2>Contact</h2>
       <div class="section-rule"></div>
     </div>
-
     <div class="contact-grid">
       <div class="contact-info">
         <p>I'm currently looking for full-time roles in aerospace, advanced manufacturing, or robotics. Open to contract work and research collaborations too — feel free to reach out.</p>
         <div class="contact-links">
-          <a href="mailto:alex@example.com" class="contact-link">
+          <a href="mailto:aryan@example.com" class="contact-link">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-            alex@example.com
+            aryan@example.com
           </a>
         </div>
       </div>
-
       <form class="contact-form" onsubmit="return false;">
         <div class="form-group">
           <label for="name">Name</label>
@@ -999,19 +1079,27 @@
           <label for="message">Message</label>
           <textarea id="message" placeholder="Tell me about the opportunity…"></textarea>
         </div>
-        <button type="submit" class="btn-primary" style="align-self: flex-start;">Send Message</button>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;">Send Message</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <p>© 2025 Aryan Abidi — Built with HTML/CSS and deployed on GitHub Pages</p>
+    <p>© 2025 Aryan Husain — Built with HTML/CSS and deployed on GitHub Pages</p>
     <p><a href="#hero">↑ Back to top</a></p>
   </div>
 </footer>
+
+<script>
+  function toggleProject(id) {
+    const item = document.getElementById(id);
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.project-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 </body>
 </html>
