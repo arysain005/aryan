@@ -1,204 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aryan Husain — Contact</title>
   <link rel="stylesheet" href="assets/style.css"/>
   <style>
+  .contact-page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 4.5rem 2rem 6rem;
+  }
 
-    .contact-page {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 5rem 2.5rem 6rem;
-    }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
 
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      margin-top: 1rem;
-    }
+  /* Left */
+  .contact-intro { display: flex; flex-direction: column; gap: 1rem; }
 
-    /* Left — message */
-    .contact-intro p {
-      font-size: 1rem;
-      color: var(--dim);
-      font-weight: 300;
-      line-height: 1.85;
-      margin-bottom: 1rem;
-    }
-    .contact-intro p strong { color: var(--body); font-weight: 500; }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: var(--secondary);
+    border: 1.5px solid rgba(30,214,52,0.3);
+    border-radius: 20px;
+    padding: 6px 16px;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.35; transform:scale(0.8); }
+  }
 
-    /* Right — links */
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
+  .contact-intro p {
+    font-size: 1rem; color: var(--text2);
+    font-weight: 300; line-height: 1.85;
+  }
+  .contact-intro p strong { color: var(--text); font-weight: 600; }
 
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.5rem 1.75rem;
-      background: var(--panel);
-      border: 1px solid var(--edge);
-      text-decoration: none;
-      color: var(--body);
-      transition: border-color 0.25s, background 0.25s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
+  .contact-location {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--text3); letter-spacing: 0.08em;
+    margin-top: 0.5rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .contact-location::before { content: '📍'; font-size: 12px; }
 
-    .contact-link::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--accent);
-      transform: scaleY(0);
-      transform-origin: bottom;
-      transition: transform 0.3s;
-    }
+  /* decorative circuit */
+  .contact-deco { margin-top: 2.5rem; opacity: 0.6; }
 
-    .contact-link:hover {
-      border-color: var(--accent);
-      background: #1a2535;
-      transform: translateX(4px);
-    }
-    .contact-link:hover::before { transform: scaleY(1); }
+  /* Right — links */
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
 
-    .contact-link-icon {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--wire);
-      background: var(--surface);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: border-color 0.25s;
-    }
-    .contact-link:hover .contact-link-icon { border-color: var(--accent); }
-    .contact-link-icon svg { width: 18px; height: 18px; stroke: var(--accent); }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--panel);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s;
+  }
+  .contact-link:hover {
+    border-color: var(--primary);
+    background: var(--secondary);
+    box-shadow: 0 6px 24px var(--shadow);
+    transform: translateY(-3px);
+  }
 
-    .contact-link-body { flex: 1; }
+  .contact-link-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--secondary);
+    border: 1.5px solid rgba(30,214,52,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .contact-link:hover .contact-link-icon {
+    background: rgba(30,214,52,0.15);
+    border-color: var(--primary);
+  }
+  .contact-link-icon svg { width: 20px; height: 20px; stroke: var(--primary); }
 
-    .contact-link-label {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 3px;
-    }
+  .contact-link-body { flex: 1; }
+  .contact-link-label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 4px;
+  }
+  .contact-link-value {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text); letter-spacing: -0.01em;
+  }
+  .contact-link-sub {
+    font-size: 0.78rem; color: var(--text3);
+    margin-top: 2px;
+  }
 
-    .contact-link-value {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--bright);
-      letter-spacing: 0.02em;
-    }
+  .contact-arrow {
+    font-size: 18px; color: var(--border);
+    transition: color 0.25s, transform 0.25s;
+    font-weight: 300;
+  }
+  .contact-link:hover .contact-arrow {
+    color: var(--primary);
+    transform: translateX(3px);
+  }
 
-    .contact-link-arrow {
-      font-family: var(--mono);
-      font-size: 14px;
-      color: var(--wire);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(3px); }
-
-    /* Drawing decoration */
-    .contact-decoration {
-      margin-top: 4rem;
-      opacity: 0.35;
-    }
-
-    /* Status badge */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(76,175,125,0.08);
-      border: 1px solid rgba(76,175,125,0.25);
-      padding: 6px 14px;
-      margin-bottom: 1.5rem;
-    }
-    .status-dot {
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    @media (max-width: 760px) {
-      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .contact-page { padding: 3rem 1.25rem 4rem; }
-    }
+  @media (max-width: 760px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-page { padding: 3rem 1rem 4rem; }
+  }
   </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">AH<span>_</span>MENG</a>
+  <a class="nav-logo" href="index.html"><span class="nav-logo-dot"></span>Aryan Husain</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="experience.html">Experience</a></li>
     <li><a href="projects.html">Projects</a></li>
     <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
+  <div class="theme-toggle-wrap">
+    <span class="theme-toggle-icon">☀️</span>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+    <span class="theme-toggle-icon">🌙</span>
+  </div>
 </nav>
 
 <div class="page-wrap">
 <div class="contact-page">
 
-  <div class="section-eyebrow fade-up">Get In Touch</div>
-  <h1 class="section-title fade-up fade-up-d1">Contact</h1>
+  <div class="eyebrow fade-up">Get In Touch</div>
+  <h1 class="page-title fade-up fade-up-d1">Contact</h1>
 
   <div class="contact-layout">
 
     <div class="contact-intro fade-up fade-up-d2">
-      <div class="status-badge">
+      <div class="status-pill">
         <span class="status-dot"></span>
         Open to opportunities
       </div>
       <p>
-        I'm a <strong>second-year Mechanical Engineering student at Memorial University of Newfoundland</strong>, actively looking for internships, co-op positions, and student team opportunities for Summer 2025 and beyond.
+        I'm a <strong>second-year Mechanical Engineering student at Memorial University of Newfoundland</strong>, actively looking for internships, co-op placements, and student team opportunities.
       </p>
       <p>
         Whether it's a project collaboration, a placement, or just a conversation about engineering — feel free to reach out. I'm always happy to connect.
       </p>
-      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--wire);margin-top:2rem;">
-        St. John's, Newfoundland &amp; Labrador, Canada
-      </p>
+      <p class="contact-location">St. John's, Newfoundland &amp; Labrador, Canada</p>
 
-      <div class="contact-decoration">
-        <svg viewBox="0 0 340 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%">
-          <line x1="0" y1="40" x2="340" y2="40" stroke="#3d4f63" stroke-width="0.5" stroke-dasharray="6 4"/>
-          <line x1="0" y1="20" x2="340" y2="20" stroke="#21262d" stroke-width="0.5"/>
-          <line x1="0" y1="60" x2="340" y2="60" stroke="#21262d" stroke-width="0.5"/>
-          <circle cx="50" cy="40" r="12" stroke="#4caf7d" stroke-width="1" fill="rgba(76,175,125,0.05)"/>
-          <circle cx="50" cy="40" r="3" fill="#4caf7d"/>
-          <line x1="62" y1="40" x2="160" y2="40" stroke="#3d4f63" stroke-width="1"/>
-          <rect x="160" y="30" width="20" height="20" stroke="#3d4f63" stroke-width="0.75"/>
-          <line x1="180" y1="40" x2="260" y2="40" stroke="#3d4f63" stroke-width="1"/>
-          <circle cx="272" cy="40" r="12" stroke="#d4a647" stroke-width="1" fill="rgba(212,166,71,0.05)"/>
-          <circle cx="272" cy="40" r="3" fill="#d4a647"/>
-          <text x="50" y="72" text-anchor="middle" fill="#4caf7d" font-family="Share Tech Mono,monospace" font-size="7">EMAIL</text>
-          <text x="272" y="72" text-anchor="middle" fill="#d4a647" font-family="Share Tech Mono,monospace" font-size="7">LINKEDIN</text>
-          <line x1="50" y1="20" x2="50" y2="28" stroke="#4caf7d" stroke-width="0.75"/>
-          <line x1="272" y1="20" x2="272" y2="28" stroke="#d4a647" stroke-width="0.75"/>
+      <!-- Decorative circuit SVG -->
+      <div class="contact-deco">
+        <svg viewBox="0 0 320 70" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <line x1="0"   y1="35" x2="320" y2="35" stroke="var(--border2)" stroke-width="1" stroke-dasharray="6 5"/>
+          <circle cx="40"  cy="35" r="14" stroke="var(--primary)" stroke-width="1.5" fill="var(--secondary)"/>
+          <circle cx="40"  cy="35" r="4"  fill="var(--primary)"/>
+          <line x1="54"  y1="35" x2="140" y2="35" stroke="var(--primary)" stroke-width="1.5"/>
+          <rect  x="140" y="25" width="20" height="20" rx="4" stroke="var(--border)" stroke-width="1.5" fill="var(--panel)"/>
+          <line x1="160" y1="35" x2="250" y2="35" stroke="var(--primary)" stroke-width="1.5"/>
+          <circle cx="262" cy="35" r="12" stroke="var(--accent)" stroke-width="1.5" fill="rgba(255,180,50,0.08)"/>
+          <circle cx="262" cy="35" r="3.5" fill="var(--accent)"/>
+          <text x="40"  y="60" text-anchor="middle" fill="var(--primary)" font-family="DM Mono,monospace" font-size="7" letter-spacing="0.1em">EMAIL</text>
+          <text x="262" y="60" text-anchor="middle" fill="var(--accent)"  font-family="DM Mono,monospace" font-size="7" letter-spacing="0.1em">LINKEDIN</text>
+          <line x1="40"  y1="21" x2="40"  y2="0"  stroke="var(--primary)" stroke-width="0.75" stroke-dasharray="3 3"/>
+          <line x1="262" y1="23" x2="262" y2="0"  stroke="var(--accent)"  stroke-width="0.75" stroke-dasharray="3 3"/>
         </svg>
       </div>
     </div>
@@ -207,21 +196,22 @@
 
       <a href="mailto:arysain05@gmail.com" class="contact-link">
         <div class="contact-link-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75">
+            <rect x="2" y="4" width="20" height="16" rx="3"/>
             <path d="m2 7 10 7 10-7"/>
           </svg>
         </div>
         <div class="contact-link-body">
           <div class="contact-link-label">Email</div>
           <div class="contact-link-value">arysain05@gmail.com</div>
+          <div class="contact-link-sub">Best way to reach me</div>
         </div>
-        <span class="contact-link-arrow">→</span>
+        <span class="contact-arrow">→</span>
       </a>
 
       <a href="https://www.linkedin.com/in/aryan-abidi-husain-742992287" target="_blank" rel="noopener" class="contact-link">
         <div class="contact-link-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75">
             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
             <rect x="2" y="9" width="4" height="12"/>
             <circle cx="4" cy="4" r="2"/>
@@ -230,20 +220,37 @@
         <div class="contact-link-body">
           <div class="contact-link-label">LinkedIn</div>
           <div class="contact-link-value">aryan-abidi-husain</div>
+          <div class="contact-link-sub">linkedin.com/in/aryan-abidi-husain-742992287</div>
         </div>
-        <span class="contact-link-arrow">→</span>
+        <span class="contact-arrow">→</span>
       </a>
 
     </div>
 
   </div>
 
-</div><!-- /contact-page -->
+</div>
 
 <footer>
-  <p>© 2025 Aryan Husain — Memorial University of Newfoundland</p>
+  <div class="footer-left">
+    <p>© 2025 Aryan Husain</p>
+    <p>Memorial University of Newfoundland</p>
+  </div>
+  <div class="footer-dot">AH</div>
   <p><a href="mailto:arysain05@gmail.com">arysain05@gmail.com</a></p>
 </footer>
 </div>
+
+<script>
+  const html = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', saved);
+  btn.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
 </body>
 </html>
