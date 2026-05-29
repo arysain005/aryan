@@ -1,301 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aryan Husain — Projects</title>
   <link rel="stylesheet" href="assets/style.css"/>
   <style>
+  .proj-page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 4.5rem 2rem 6rem;
+  }
 
-    .proj-page {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 5rem 2.5rem 6rem;
-    }
+  .proj-hint {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.07em;
+    margin-bottom: 2.5rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .proj-hint::before {
+    content: '↓';
+    font-size: 12px;
+    color: var(--primary);
+  }
 
-    /* ── PROJECT LIST ── */
-    .proj-list {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
+  /* ── PROJECT LIST ── */
+  .proj-list { display: flex; flex-direction: column; gap: 10px; }
 
-    /* ── PROJECT ITEM ── */
-    .proj-item {
-      border: 1px solid var(--edge);
-      background: var(--panel);
-      transition: border-color 0.25s;
-      overflow: hidden;
-    }
-    .proj-item.open { border-color: var(--accent); }
+  .proj-item {
+    background: var(--panel);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .proj-item.open {
+    border-color: var(--primary);
+    box-shadow: 0 4px 28px var(--shadow), 0 0 0 1px rgba(30,214,52,0.1);
+  }
 
-    /* Summary row */
-    .proj-summary {
-      display: grid;
-      grid-template-columns: 48px 1fr auto;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 1.5rem 1.75rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
-    }
-    .proj-summary:hover { background: rgba(76,175,125,0.04); }
-    .proj-item.open .proj-summary { background: rgba(76,175,125,0.05); border-bottom: 1px solid var(--edge); }
+  /* Summary row */
+  .proj-summary {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.4rem 1.75rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    border-radius: 13px 13px 0 0;
+  }
+  .proj-summary:hover { background: var(--secondary); }
+  .proj-item.open .proj-summary {
+    background: var(--secondary);
+    border-radius: 13px 13px 0 0;
+    border-bottom: 1.5px solid rgba(30,214,52,0.15);
+  }
 
-    .proj-num {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--wire);
-      letter-spacing: 0.1em;
-      padding-top: 2px;
-    }
+  .proj-num {
+    font-family: var(--mono);
+    font-size: 11px; font-weight: 500;
+    color: var(--primary);
+    background: rgba(30,214,52,0.1);
+    border-radius: 6px;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
 
-    .proj-summary-body { min-width: 0; }
+  .proj-summary-body { min-width: 0; }
 
-    .proj-category {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 3px;
-    }
+  .proj-category {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 4px; font-weight: 500;
+  }
 
-    .proj-title {
-      font-family: var(--cond);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--bright);
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
+  .proj-title {
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--text); line-height: 1.25; margin-bottom: 8px;
+  }
 
-    .proj-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .proj-chips { display: flex; flex-wrap: wrap; gap: 5px; }
 
-    .proj-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      flex-shrink: 0;
-    }
+  .proj-right {
+    display: flex; flex-direction: column;
+    align-items: flex-end; gap: 10px; flex-shrink: 0;
+  }
 
-    .proj-kpi {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--accent);
-      white-space: nowrap;
-      letter-spacing: 0.05em;
-    }
+  .proj-kpi {
+    font-family: var(--mono); font-size: 10px;
+    font-weight: 500;
+    color: var(--primary);
+    background: rgba(30,214,52,0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
 
-    .proj-toggle {
-      font-size: 1.4rem;
-      color: var(--dim);
-      line-height: 1;
-      transition: transform 0.3s, color 0.2s;
-      font-family: var(--mono);
-    }
-    .proj-item.open .proj-toggle { transform: rotate(45deg); color: var(--accent); }
+  .proj-toggle {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 400;
+    color: var(--text3);
+    line-height: 1;
+    transition: background 0.25s, color 0.25s, transform 0.3s;
+    font-family: var(--mono);
+  }
+  .proj-item.open .proj-toggle {
+    background: var(--primary);
+    color: var(--bg);
+    transform: rotate(45deg);
+  }
 
-    /* ── DETAIL PANEL ── */
-    .proj-detail {
-      display: none;
-      flex-direction: column;
-    }
-    .proj-item.open .proj-detail { display: flex; }
+  /* Detail panel */
+  .proj-detail { display: none; }
+  .proj-item.open .proj-detail { display: block; }
 
-    /* Scrollable inner with max-height */
-    .proj-detail-scroll {
-      max-height: 70vh;
-      overflow-y: auto;
-      padding: 2.5rem 2rem 2.5rem 5rem;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 2.5rem;
-      scrollbar-width: thin;
-      scrollbar-color: var(--wire) var(--surface);
-    }
-    .proj-detail-scroll::-webkit-scrollbar { width: 4px; }
-    .proj-detail-scroll::-webkit-scrollbar-track { background: var(--surface); }
-    .proj-detail-scroll::-webkit-scrollbar-thumb { background: var(--wire); }
+  .proj-detail-scroll {
+    max-height: 72vh;
+    overflow-y: auto;
+    padding: 2.5rem 2rem 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--bg2);
+  }
+  .proj-detail-scroll::-webkit-scrollbar { width: 4px; }
+  .proj-detail-scroll::-webkit-scrollbar-track { background: var(--bg2); border-radius: 4px; }
+  .proj-detail-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-    /* Left narrative */
-    .detail-left { display: flex; flex-direction: column; gap: 2rem; }
+  /* Narrative */
+  .detail-left { display: flex; flex-direction: column; gap: 2rem; }
 
-    .detail-block-label {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
+  .detail-block { display: flex; flex-direction: column; gap: 0.5rem; }
 
-    .detail-text {
-      font-size: 0.9rem;
-      color: var(--dim);
-      line-height: 1.8;
-      font-weight: 300;
-    }
-    .detail-text strong { color: var(--body); font-weight: 500; }
+  .detail-label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--primary); font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .detail-label::before {
+    content:''; display:block; width:14px; height:2px;
+    background:var(--primary); border-radius:1px;
+  }
 
-    /* What I did — numbered steps */
-    .did-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      counter-reset: did;
-    }
-    .did-list li {
-      counter-increment: did;
-      display: grid;
-      grid-template-columns: 1.5rem 1fr;
-      gap: 0.75rem;
-      font-size: 0.875rem;
-      color: var(--dim);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .did-list li::before {
-      content: counter(did, decimal-leading-zero);
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      padding-top: 3px;
-    }
+  .detail-text {
+    font-size: 0.9rem; color: var(--text2);
+    line-height: 1.8; font-weight: 300;
+  }
+  .detail-text strong { color: var(--text); font-weight: 600; }
 
-    /* What I learned — bullet list */
-    .learned-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .learned-list li {
-      font-size: 0.875rem;
-      color: var(--dim);
-      line-height: 1.65;
-      font-weight: 300;
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-    }
-    .learned-list li::before {
-      content: '▸';
-      color: var(--accent);
-      font-size: 10px;
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
+  /* What I did */
+  .did-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.85rem;
+    counter-reset: did;
+  }
+  .did-list li {
+    counter-increment: did;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 0.75rem;
+    font-size: 0.875rem; color: var(--text2);
+    line-height: 1.7; font-weight: 300;
+    align-items: start;
+  }
+  .did-list li::before {
+    content: counter(did, decimal-leading-zero);
+    font-family: var(--mono); font-size: 9.5px;
+    color: var(--bg); background: var(--primary);
+    border-radius: 4px;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-weight: 500; margin-top: 2px;
+  }
 
-    /* Right sidebar */
-    .detail-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
+  /* What I learned */
+  .learned-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.65rem;
+  }
+  .learned-list li {
+    font-size: 0.875rem; color: var(--text2);
+    line-height: 1.65; font-weight: 300;
+    display: flex; gap: 0.75rem; align-items: flex-start;
+  }
+  .learned-list li::before {
+    content: '▸';
+    color: var(--accent); font-size: 11px;
+    flex-shrink: 0; margin-top: 3px;
+  }
 
-    .detail-card {
-      background: var(--surface);
-      border: 1px solid var(--edge);
-      padding: 1.1rem 1.1rem;
-    }
+  /* Sidebar */
+  .detail-right { display: flex; flex-direction: column; gap: 12px; }
 
-    .detail-card-label {
-      font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 0.85rem;
-      border-bottom: 1px solid var(--edge);
-      padding-bottom: 0.5rem;
-    }
+  .detail-card {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 1.1rem;
+  }
 
-    .spec-table { width: 100%; border-collapse: collapse; }
-    .spec-table tr { border-bottom: 1px solid var(--edge); }
-    .spec-table tr:last-child { border-bottom: none; }
-    .spec-table td { padding: 5px 0; font-size: 0.8rem; }
-    .spec-table td:first-child { color: var(--dim); font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; width: 50%; }
-    .spec-table td:last-child { color: var(--body); text-align: right; }
+  .detail-card-label {
+    font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 0.85rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border2);
+  }
 
-    .result-box {
-      background: rgba(76,175,125,0.07);
-      border: 1px solid rgba(76,175,125,0.2);
-      padding: 1rem;
-    }
-    .result-big {
-      font-family: var(--cond);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .result-desc { font-size: 0.78rem; color: var(--dim); line-height: 1.5; }
+  .spec-table { width: 100%; border-collapse: collapse; }
+  .spec-table tr { border-bottom: 1px solid var(--border2); }
+  .spec-table tr:last-child { border-bottom: none; }
+  .spec-table td { padding: 5px 0; font-size: 0.8rem; }
+  .spec-table td:first-child {
+    color: var(--text3); font-family: var(--mono);
+    font-size: 9px; letter-spacing: 0.04em; width: 50%;
+  }
+  .spec-table td:last-child { color: var(--text); text-align: right; font-weight: 500; font-size: 0.82rem; }
 
-    /* Detail links */
-    .detail-links {
-      display: flex;
-      gap: 1rem;
-      padding-top: 0.25rem;
-    }
-    .detail-links a {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: color 0.2s;
-    }
-    .detail-links a:hover { color: #6dcf9e; }
-    .detail-links a svg { width: 12px; height: 12px; stroke: currentColor; }
+  .result-box {
+    background: var(--secondary);
+    border: 1.5px solid rgba(30,214,52,0.25);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .result-big {
+    font-family: var(--serif);
+    font-size: 2.6rem; font-weight: 700;
+    color: var(--primary); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .result-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
 
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .proj-item.open .proj-detail { animation: slideDown 0.22s ease; }
+  .detail-links {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    padding-top: 0.25rem;
+  }
+  .detail-links a {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text2); text-decoration: none;
+    padding: 7px 14px; border-radius: 6px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 5px;
+    transition: all 0.2s;
+  }
+  .detail-links a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--secondary);
+  }
+  .detail-links a svg { width: 12px; height: 12px; stroke: currentColor; }
 
-    @media (max-width: 760px) {
-      .proj-detail-scroll { grid-template-columns: 1fr; padding-left: 1.5rem; }
-      .proj-summary { grid-template-columns: 32px 1fr auto; padding: 1.25rem 1rem; gap: 1rem; }
-      .proj-page { padding: 3rem 1.25rem 4rem; }
-    }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .proj-item.open .proj-detail { animation: slideDown 0.22s ease; }
+
+  @media (max-width: 760px) {
+    .proj-detail-scroll { grid-template-columns: 1fr; }
+    .proj-summary { grid-template-columns: 36px 1fr auto; padding: 1.1rem 1rem; gap: 0.75rem; }
+    .proj-page { padding: 3rem 1rem 4rem; }
+  }
   </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">AH<span>_</span>MENG</a>
+  <a class="nav-logo" href="index.html"><span class="nav-logo-dot"></span>Aryan Husain</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="experience.html">Experience</a></li>
     <li><a href="projects.html" class="active">Projects</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <div class="theme-toggle-wrap">
+    <span class="theme-toggle-icon">☀️</span>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+    <span class="theme-toggle-icon">🌙</span>
+  </div>
 </nav>
 
 <div class="page-wrap">
 <div class="proj-page">
 
-  <div class="section-eyebrow fade-up">Engineering Work</div>
-  <h1 class="section-title fade-up fade-up-d1">Projects</h1>
-  <p style="font-size:0.875rem;color:var(--dim);margin-bottom:2.5rem;font-weight:300;font-family:var(--mono);font-size:10px;letter-spacing:0.07em;" class="fade-up fade-up-d2">
-    Click any project to expand the full case study — scroll within the panel to read through.
-  </p>
+  <div class="eyebrow fade-up">Engineering Work</div>
+  <h1 class="page-title fade-up fade-up-d1">Projects</h1>
+  <p class="proj-hint fade-up fade-up-d2">Click any project to expand — scroll within the panel to read through</p>
 
   <div class="proj-list">
 
-    <!-- ══ PROJECT 1 ══ -->
-    <div class="proj-item fade-up fade-up-d1" id="p1">
+    <!-- PROJECT 1 -->
+    <div class="proj-item fade-up fade-up-d2" id="p1">
       <div class="proj-summary" onclick="toggle('p1')">
         <span class="proj-num">01</span>
         <div class="proj-summary-body">
@@ -305,7 +313,7 @@
             <span class="chip">ANSYS Fluent</span>
             <span class="chip">SolidWorks</span>
             <span class="chip">CFD</span>
-            <span class="chip">Al 6061</span>
+            <span class="chip chip-accent">Al 6061</span>
           </div>
         </div>
         <div class="proj-right">
@@ -313,45 +321,37 @@
           <span class="proj-toggle">+</span>
         </div>
       </div>
-
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-
-            <div>
-              <div class="detail-block-label">What the project is</div>
-              <p class="detail-text">
-                UAV propulsion motors generate significant heat at sustained high thrust. This project designed a <strong>cross-flow microchannel heat exchanger</strong> for a 12 kg fixed-wing UAV, replacing a bulky fin array with a compact brazed-aluminium unit that integrates directly into the nacelle structure. The goal was to reject 180W continuously at 55°C ambient within an 80 × 60 × 20mm envelope weighing under 85g.
-              </p>
+            <div class="detail-block">
+              <div class="detail-label">What the project is</div>
+              <p class="detail-text">UAV propulsion motors generate significant heat at sustained high thrust. This project designed a <strong>cross-flow microchannel heat exchanger</strong> for a 12 kg fixed-wing UAV, replacing a bulky fin array with a compact brazed-aluminium unit integrating directly into the nacelle structure. Goal: reject 180W continuously at 55°C ambient within 80 × 60 × 20mm, under 85g.</p>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I did</div>
+            <div class="detail-block">
+              <div class="detail-label">What I did</div>
               <ol class="did-list">
-                <li>Established heat rejection targets from motor datasheets and field telemetry — 180W at 55°C ambient.</li>
+                <li>Established heat rejection targets of 180W at 55°C ambient from motor datasheets and field telemetry.</li>
                 <li>Built a parametric SolidWorks model sweeping channel width (0.4–1.2mm), fin pitch, and wall thickness across 48 geometry variants.</li>
-                <li>Ran conjugate heat transfer CFD in ANSYS Fluent at Re 1200–4500; identified optimal 0.7mm channel width and 1.1mm fin pitch.</li>
-                <li>CNC-milled channels in Al 6061, vacuum-brazed headers, and bench-tested on a motor dyno with a thermocouple array.</li>
-                <li>Introduced a bifurcated inlet manifold to resolve a pressure drop issue — cut ΔP by 29% with only a 4% drop in heat transfer coefficient.</li>
+                <li>Ran conjugate heat transfer CFD in ANSYS Fluent (Re 1200–4500); identified optimal 0.7mm channel width and 1.1mm fin pitch.</li>
+                <li>CNC-milled channels in Al 6061, vacuum-brazed headers, bench-tested on a motor dyno with thermocouple array.</li>
+                <li>Introduced a bifurcated inlet manifold to resolve pressure drop issues — cut ΔP by 29% with only 4% reduction in heat transfer coefficient.</li>
               </ol>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I learned</div>
+            <div class="detail-block">
+              <div class="detail-label">What I learned</div>
               <ul class="learned-list">
                 <li>How to set up conjugate heat transfer simulations and validate CFD results against analytical correlations (Dittus-Boelter, within 4%).</li>
-                <li>The importance of pressure drop budgeting early in the design process — discovered late, it nearly invalidated the geometry.</li>
+                <li>The importance of pressure drop budgeting early — discovered late, it nearly invalidated the geometry.</li>
                 <li>Parametric CAD + scripted mesh export pipelines dramatically accelerate multi-variant CFD studies.</li>
                 <li>Simulation-to-hardware agreement within 6°C is achievable with careful material property inputs and boundary condition calibration.</li>
               </ul>
             </div>
-
             <div class="detail-links">
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Report</a>
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
             </div>
           </div>
-
           <div class="detail-right">
             <div class="detail-card">
               <div class="detail-card-label">Key specifications</div>
@@ -374,8 +374,8 @@
       </div>
     </div>
 
-    <!-- ══ PROJECT 2 ══ -->
-    <div class="proj-item fade-up fade-up-d2" id="p2">
+    <!-- PROJECT 2 -->
+    <div class="proj-item fade-up fade-up-d3" id="p2">
       <div class="proj-summary" onclick="toggle('p2')">
         <span class="proj-num">02</span>
         <div class="proj-summary-body">
@@ -385,7 +385,7 @@
             <span class="chip">Abaqus FEA</span>
             <span class="chip">Altair OptiStruct</span>
             <span class="chip">SLS Printing</span>
-            <span class="chip">Nylon PA12</span>
+            <span class="chip chip-accent">Nylon PA12</span>
           </div>
         </div>
         <div class="proj-right">
@@ -393,42 +393,37 @@
           <span class="proj-toggle">+</span>
         </div>
       </div>
-
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div>
-              <div class="detail-block-label">What the project is</div>
-              <p class="detail-text">Applied <strong>topology optimisation</strong> to redistribute material in a road bicycle crank arm only where structurally necessary, then manufactured the organic result via Selective Laser Sintering — a process that can realise the complex geometries TO produces, unlike conventional machining. The goal was maximum mass reduction without dropping factor of safety below 3.5.</p>
+            <div class="detail-block">
+              <div class="detail-label">What the project is</div>
+              <p class="detail-text">Applied <strong>topology optimisation</strong> to redistribute material in a road bicycle crank arm only where structurally necessary, then manufactured the organic result via Selective Laser Sintering — a process that can realise the complex geometries TO produces, unlike conventional machining. Goal: maximum mass reduction without FoS dropping below 3.5.</p>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I did</div>
+            <div class="detail-block">
+              <div class="detail-label">What I did</div>
               <ol class="did-list">
-                <li>Extracted peak pedal forces from a commercial power meter during a maximal sprint — 1,450N downward, 320N lateral, 85Nm torsion.</li>
+                <li>Extracted peak pedal forces from a power meter during a maximal sprint — 1,450N downward, 320N lateral, 85Nm torsion.</li>
                 <li>Meshed the original alloy crank in Abaqus with C3D10 tetra elements (avg 1.8mm) and validated against published strain-gauge data.</li>
-                <li>Set up OptiStruct topology optimisation with volume fraction 0.65 and minimum member size 3mm to suit SLS process limits. Ran 42 iterations.</li>
-                <li>Remodelled the optimised result as a smooth B-rep in SolidWorks and re-ran Abaqus with PA12 material properties — FoS ≥ 3.5 confirmed.</li>
-                <li>Parts printed at 0.1mm layer height, media-blasted, and fatigue-tested to 100k cycles at 1.5× design load — zero cracking.</li>
+                <li>Set up OptiStruct topology optimisation with volume fraction 0.65 and minimum member size 3mm (SLS constraint). Ran 42 iterations.</li>
+                <li>Remodelled the optimised result as a smooth B-rep in SolidWorks; re-ran Abaqus with PA12 properties — FoS ≥ 3.5 confirmed.</li>
+                <li>Printed at 0.1mm layer height, media-blasted, and fatigue-tested to 100k cycles at 1.5× design load — zero cracking.</li>
               </ol>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I learned</div>
+            <div class="detail-block">
+              <div class="detail-label">What I learned</div>
               <ul class="learned-list">
-                <li>Topology optimisation gives a stress-flow map, not a finished geometry — interpretation and B-rep reconstruction is a significant skill in itself.</li>
-                <li>SIMP penalisation and volume fraction are sensitive parameters; small changes produce very different material distributions.</li>
-                <li>SLS opens up geometries machining cannot — but requires minimum member size constraints to be baked into the optimisation setup.</li>
-                <li>Stiffness can increase even as mass drops, if material is redistributed along principal stress trajectories.</li>
+                <li>Topology optimisation gives a stress-flow map, not a finished geometry — B-rep reconstruction is a significant skill in itself.</li>
+                <li>SIMP penalisation and volume fraction are sensitive — small changes produce very different material distributions.</li>
+                <li>SLS opens up geometries machining cannot, but minimum member size constraints must be baked into the optimisation setup.</li>
+                <li>Stiffness can increase even as mass drops if material is redistributed along principal stress trajectories.</li>
               </ul>
             </div>
-
             <div class="detail-links">
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Report</a>
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
             </div>
           </div>
-
           <div class="detail-right">
             <div class="detail-card">
               <div class="detail-card-label">Simulation parameters</div>
@@ -443,15 +438,15 @@
             </div>
             <div class="result-box">
               <div class="result-big">31%</div>
-              <div class="result-desc">mass reduction — stiffness actually increased 8%</div>
+              <div class="result-desc">mass reduction — stiffness increased 8%</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ══ PROJECT 3 ══ -->
-    <div class="proj-item fade-up fade-up-d3" id="p3">
+    <!-- PROJECT 3 -->
+    <div class="proj-item fade-up fade-up-d4" id="p3">
       <div class="proj-summary" onclick="toggle('p3')">
         <span class="proj-num">03</span>
         <div class="proj-summary-body">
@@ -461,7 +456,7 @@
             <span class="chip">MATLAB</span>
             <span class="chip">SolidWorks</span>
             <span class="chip">Servo Control</span>
-            <span class="chip">Arduino</span>
+            <span class="chip chip-accent">Arduino</span>
           </div>
         </div>
         <div class="proj-right">
@@ -469,42 +464,37 @@
           <span class="proj-toggle">+</span>
         </div>
       </div>
-
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div>
-              <div class="detail-block-label">What the project is</div>
-              <p class="detail-text">Built a <strong>desktop 6-DOF robotic manipulator</strong> from scratch — custom-machined aluminium links, hobby servos, and a MATLAB-derived inverse kinematics solver running on an Arduino Mega — achieving ±0.2mm end-effector repeatability at a total BOM cost under £420. Designed for PCB component pick-and-place tasks.</p>
+            <div class="detail-block">
+              <div class="detail-label">What the project is</div>
+              <p class="detail-text">Built a <strong>desktop 6-DOF robotic manipulator</strong> from scratch — custom-machined aluminium links, hobby servos, and a MATLAB-derived inverse kinematics solver running on an Arduino Mega — achieving ±0.2mm end-effector repeatability at under £420 total BOM. Designed for PCB component pick-and-place tasks.</p>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I did</div>
+            <div class="detail-block">
+              <div class="detail-label">What I did</div>
               <ol class="did-list">
-                <li>Derived forward kinematics using modified Denavit-Hartenberg parameters in MATLAB Symbolic Toolbox; performed workspace analysis to confirm 280mm reach with no singularities in the assembly plane.</li>
+                <li>Derived forward kinematics using modified DH parameters in MATLAB Symbolic Toolbox; workspace analysis confirmed 280mm reach with no singularities in the assembly plane.</li>
                 <li>Designed links as hollow Al 6061 extrusions in SolidWorks; FEA confirmed deflection under 0.15mm at full reach with 200g payload.</li>
-                <li>Implemented a closed-form inverse kinematics solver using Pieper's method; Jacobian-based singularity detection with automatic trajectory replanning.</li>
-                <li>Tuned PID gains using Ziegler-Nichols then refined with MATLAB System Identification Toolbox; ran gravity compensation from least-squares equilibrium measurements at 20 configurations.</li>
-                <li>Implemented a backlash compensation algorithm — always approach from same rotational direction — reducing effective backlash from 0.8° to 0.05°.</li>
+                <li>Implemented a closed-form IK solver using Pieper's method; Jacobian-based singularity detection with automatic trajectory replanning.</li>
+                <li>Tuned PID gains using Ziegler-Nichols then refined with MATLAB System Identification; ran gravity compensation from least-squares equilibrium measurements at 20 configurations.</li>
+                <li>Implemented a backlash compensation algorithm — always approach from same direction — reducing effective backlash from 0.8° to 0.05°.</li>
               </ol>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I learned</div>
+            <div class="detail-block">
+              <div class="detail-label">What I learned</div>
               <ul class="learned-list">
                 <li>Hobby servos have enough precision for sub-mm work if backlash is actively compensated for in software and mechanically preloaded out of joints.</li>
                 <li>Gravity compensation is not optional — without it, positioning error nearly doubles in extended-reach configurations.</li>
-                <li>Fixed-point arithmetic on Arduino Mega can run a full IK solve at 200Hz if the algorithm is carefully structured to avoid floating-point operations.</li>
-                <li>Repeatability and accuracy are distinct — I achieved high repeatability but absolute accuracy still drifts with temperature; learned to design around the more controllable metric.</li>
+                <li>Fixed-point arithmetic on Arduino Mega can run a full IK solve at 200Hz if the algorithm avoids floating-point operations.</li>
+                <li>Repeatability and accuracy are distinct — high repeatability but absolute accuracy drifts with temperature; learned to design around the more controllable metric.</li>
               </ul>
             </div>
-
             <div class="detail-links">
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>Demo</a>
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
             </div>
           </div>
-
           <div class="detail-right">
             <div class="detail-card">
               <div class="detail-card-label">System specs</div>
@@ -526,8 +516,8 @@
       </div>
     </div>
 
-    <!-- ══ PROJECT 4 ══ -->
-    <div class="proj-item fade-up fade-up-d4" id="p4">
+    <!-- PROJECT 4 -->
+    <div class="proj-item fade-up fade-up-d5" id="p4">
       <div class="proj-summary" onclick="toggle('p4')">
         <span class="proj-num">04</span>
         <div class="proj-summary-body">
@@ -537,7 +527,7 @@
             <span class="chip">Nastran</span>
             <span class="chip">Composite FEA</span>
             <span class="chip">CFRP</span>
-            <span class="chip">Autoclave</span>
+            <span class="chip chip-accent">Autoclave</span>
           </div>
         </div>
         <div class="proj-right">
@@ -545,42 +535,37 @@
           <span class="proj-toggle">+</span>
         </div>
       </div>
-
       <div class="proj-detail">
         <div class="proj-detail-scroll">
           <div class="detail-left">
-            <div>
-              <div class="detail-block-label">What the project is</div>
+            <div class="detail-block">
+              <div class="detail-label">What the project is</div>
               <p class="detail-text">Optimised the <strong>fibre orientation and ply stacking sequence</strong> of a T300/epoxy prepreg front splitter to minimise interlaminar shear stress — the dominant failure mode — while reducing ply count and layup time. The panel must resist up to 400N downforce at 130km/h without aeroelastic distortion that changes diffuser gap height.</p>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I did</div>
+            <div class="detail-block">
+              <div class="detail-label">What I did</div>
               <ol class="did-list">
-                <li>Ran steady RANS CFD (k-ω SST) on the full car geometry to extract pressure distribution over the splitter at 5 speeds; peak 3.1 kPa at the leading edge.</li>
-                <li>Modelled the baseline [0/±45/90]s 8-ply layup with Nastran PCOMP cards; found interlaminar shear stress 14.2 MPa — above the 12 MPa design limit.</li>
-                <li>Ran a full-factorial Design of Experiments across fibre orientation and ply ordering (3 factors × 3 levels, 81 candidates) using OptiStruct composite optimiser.</li>
-                <li>Selected [±30/0/90]s sequence based on minimum interlaminar shear criterion; reduced ILS to 11.1 MPa and ply count from 8 to 6.</li>
-                <li>Manufactured via autoclave at 125°C / 6 bar; post-cure UT C-scan confirmed void content 0.8% (limit: 2%). Flatness 0.3mm over 600mm span.</li>
+                <li>Ran steady RANS CFD (k-ω SST) on the full car geometry to extract pressure distribution at 5 speeds; peak 3.1 kPa at the leading edge.</li>
+                <li>Modelled the baseline [0/±45/90]s 8-ply layup with Nastran PCOMP cards; found interlaminar shear stress at 14.2 MPa — above the 12 MPa design limit.</li>
+                <li>Ran a full-factorial Design of Experiments across fibre orientation and ply ordering (81 candidates) using OptiStruct composite optimiser.</li>
+                <li>Selected [±30/0/90]s sequence based on minimum ILS criterion; reduced stress to 11.1 MPa and ply count from 8 to 6.</li>
+                <li>Manufactured via autoclave at 125°C / 6 bar; UT C-scan confirmed void content 0.8% (limit: 2%). Flatness 0.3mm over 600mm span.</li>
               </ol>
             </div>
-
-            <div>
-              <div class="detail-block-label">What I learned</div>
+            <div class="detail-block">
+              <div class="detail-label">What I learned</div>
               <ul class="learned-list">
-                <li>Fibre angle has a non-linear effect on interlaminar shear — rotating from 0° to ±30° redistributes in-plane shear between layers in a way that's counterintuitive at first.</li>
+                <li>Fibre angle has a non-linear effect on ILS — rotating from 0° to ±30° redistributes in-plane shear between layers counterintuitively.</li>
                 <li>Design of Experiments is far more efficient than manual iteration for composite stacking problems with many interacting variables.</li>
-                <li>Layup quality (void content, ply alignment) determines whether the FEA prediction holds in the real part — manufacturing process control is as important as design optimisation.</li>
-                <li>CFD-to-structural co-simulation workflows require careful mesh interpolation at the boundary; a mismatch in coordinate systems cost two days of debugging.</li>
+                <li>Layup quality determines whether the FEA prediction holds — manufacturing process control matters as much as design optimisation.</li>
+                <li>CFD-to-structural co-simulation workflows require careful mesh interpolation; a coordinate system mismatch cost two days of debugging.</li>
               </ul>
             </div>
-
             <div class="detail-links">
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Report</a>
               <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
             </div>
           </div>
-
           <div class="detail-right">
             <div class="detail-card">
               <div class="detail-card-label">Layup details</div>
@@ -603,28 +588,35 @@
     </div>
 
   </div><!-- /proj-list -->
-
-</div><!-- /proj-page -->
+</div>
 
 <footer>
-  <p>© 2025 Aryan Husain</p>
-  <p><a href="contact.html">arysain05@gmail.com</a></p>
+  <div class="footer-left">
+    <p>© 2025 Aryan Husain</p>
+    <p>Memorial University of Newfoundland</p>
+  </div>
+  <div class="footer-dot">AH</div>
+  <p><a href="mailto:arysain05@gmail.com">arysain05@gmail.com</a></p>
 </footer>
-</div><!-- /page-wrap -->
+</div>
 
 <script>
+  const html = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', saved);
+  btn.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
   function toggle(id) {
     const item = document.getElementById(id);
     const isOpen = item.classList.contains('open');
-    // Close all
     document.querySelectorAll('.proj-item.open').forEach(el => el.classList.remove('open'));
-    // Open clicked if it wasn't already open
     if (!isOpen) {
       item.classList.add('open');
-      // Scroll into view smoothly after a short delay for animation
-      setTimeout(() => {
-        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 80);
+      setTimeout(() => item.scrollIntoView({ behavior:'smooth', block:'nearest' }), 80);
     }
   }
 </script>
